@@ -57,7 +57,8 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 
 - Clone Example Project (`simonteague6/profile-card`) into `~/projects/` via Zed's built-in terminal (`Ctrl+\``). Windows/WSL: always use terminal — command palette clone opens the Windows filesystem. macOS: terminal or command palette both work.
 - Git config setup covered (collapsible): `git config --global user.name` and `user.email` — set once, used forever.
-- Walkthrough: command palette (`Cmd/Ctrl+Shift+P` — the primary way to drive Zed), file picker, git graph + branches (real tree with merges), terminal, Agent Panel (awareness only).
+- Walkthrough: command palette (`Cmd/Ctrl+Shift+P` — the primary way to drive Zed), file picker, git graph + branches (opened via command palette, real tree with merges), terminal, Agent Panel (awareness only).
+- No original video — zed.dev's own docs/videos are better produced than anything made in-house would be. The tour closes by pointing to zed.dev and encouraging self-directed exploration via the command palette.
 
 ### Next Steps (end-of-guide)
 
@@ -110,6 +111,7 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 
 ### Zed Details
 - Zed installation docs linked at the top of each OS path.
+- Sticky header nav includes a `zed.dev` quick link (external) alongside the section anchors.
 - Agent Panel: awareness only — no AI setup or configuration.
 - Example Project: `simonteague6/profile-card` — public, simple profile card. Real git history: multiple commits on `main`, two branches (`bugfix/typo-in-bio`, `feature/add-paragraph`) that diverge and merge back with `--no-ff`. Shows the difference between a commit and a branch.
 
