@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rowdy Creators Setup Guide</title>
-  <meta name="description" content="From a fresh laptop to a working dev environment — Zed, Zsh, and Oh My Zsh on macOS or Windows." />
+  <meta name="description" content="From a fresh laptop to a working dev environment: Zed, Zsh, and Oh My Zsh on macOS or Windows." />
   <meta name="theme-color" content="#080808" />
   <meta name="author" content="Rowdy Creators" />
 
   <!-- Open Graph / Twitter (og:image needs an absolute URL once deployed; see Assumptions) -->
   <meta property="og:title" content="Rowdy Creators Setup Guide" />
-  <meta property="og:description" content="From a fresh laptop to a working dev environment — Zed, Zsh, and Oh My Zsh on macOS or Windows." />
+  <meta property="og:description" content="From a fresh laptop to a working dev environment: Zed, Zsh, and Oh My Zsh on macOS or Windows." />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="assets/og-cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rowdy Creators Setup Guide" />
-  <meta name="twitter:description" content="From a fresh laptop to a working dev environment — Zed, Zsh, and Oh My Zsh on macOS or Windows." />
+  <meta name="twitter:description" content="From a fresh laptop to a working dev environment: Zed, Zsh, and Oh My Zsh on macOS or Windows." />
   <meta name="twitter:image" content="assets/og-cover.png" />
 
   <!-- Favicon: terminal-prompt >_ in an accent-outlined dark square (PRD-mandated) -->
@@ -49,7 +49,7 @@
 
   <!-- Structured data (minimal, correct — avoids HowTo's dual-path complexity) -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"TechArticle","headline":"Rowdy Creators Setup Guide","description":"From a fresh laptop to a working dev environment — Zed, Zsh, and Oh My Zsh on macOS or Windows.","inLanguage":"en"}
+  {"@context":"https://schema.org","@type":"TechArticle","headline":"Rowdy Creators Setup Guide","description":"From a fresh laptop to a working dev environment: Zed, Zsh, and Oh My Zsh on macOS or Windows.","inLanguage":"en"}
   </script>
 
   <style>
@@ -221,7 +221,7 @@
     </p>
     <h1 class="mt-4 text-4xl font-bold tracking-tight text-accent-600 sm:text-6xl">Setup Guide</h1>
     <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-300 sm:text-xl">
-      From a fresh laptop to a working dev environment — Zed, Zsh, and Oh My Zsh, on macOS or Windows.
+      From a fresh laptop to a working dev environment: Zed, Zsh, and Oh My Zsh, on macOS or Windows.
     </p>
     <div class="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2">
       <a href="#macos" class="group flex items-center gap-4 rounded-2xl border border-ink-700 bg-ink-900 p-6 transition hover:border-accent-600 hover:bg-ink-800">
@@ -235,7 +235,7 @@
         <svg class="ml-auto h-5 w-5 text-accent-400 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-    <p class="mt-8 text-sm text-neutral-500">Both paths lead to the same place — everything from "Zed is open" onward is shared.</p>
+    <p class="mt-8 text-sm text-neutral-500">Both paths lead to the same place: everything from "Zed is open" onward is shared.</p>
   </div>
 </section>
 
@@ -259,6 +259,7 @@
           <h3 class="step-title">Install Xcode Command Line Tools</h3>
         </div>
         <div class="step-body mt-4">
+          <p>Open Terminal first: press <code class="inline">Cmd+Space</code>, type <code class="inline">Terminal</code>, and hit Enter (or find it in Applications → Utilities). Every command in this guide runs there.</p>
           <p>These provide <code class="inline">git</code>, compilers, and other developer tools that macOS doesn't ship with. Installing them first avoids "command not found" errors later.</p>
           <div class="code-block">
             <pre><code>xcode-select --install</code></pre>
@@ -286,17 +287,17 @@
           <h3 class="step-title">Install Zed</h3>
         </div>
         <div class="step-body mt-4">
-          <p>There are two ways — Homebrew (recommended, keeps Zed updated with <code class="inline">brew upgrade</code>) or a direct download.</p>
+          <p>There are two ways: Homebrew (recommended, keeps Zed updated with <code class="inline">brew upgrade</code>) or a direct download.</p>
           <details class="collapsible" data-severity="blue" open>
             <summary>
               <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              <span class="label">Recommended Path — Homebrew</span>
+              <span class="label">Recommended path: Homebrew</span>
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
               <div class="tip-banner">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg>
-                <div><span class="label">Tip — install Homebrew first</span><p class="text">Homebrew is a package manager that makes installing and updating dev tools one command. It's recommended but not required.</p></div>
+                <div><span class="label">Tip: install Homebrew first</span><p class="text">Homebrew is a package manager that makes installing and updating dev tools one command. It's recommended but not required.</p></div>
               </div>
               <div class="code-block">
                 <pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
@@ -317,7 +318,7 @@
           <details class="collapsible" data-severity="blue">
             <summary>
               <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              <span class="label">Quick Path — Direct download</span>
+              <span class="label">Quick path: direct download</span>
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
@@ -334,7 +335,7 @@
           <h3 class="step-title">Verify Zsh</h3>
         </div>
         <div class="step-body mt-4">
-          <p>macOS has used Zsh as the default shell since Catalina. Run <code class="inline">echo $SHELL</code> in your terminal — you should see <code class="inline">/bin/zsh</code>.</p>
+          <p>macOS has used Zsh as the default shell since Catalina. Run <code class="inline">echo $SHELL</code> in your terminal; you should see <code class="inline">/bin/zsh</code>.</p>
           <details class="collapsible" data-severity="blue">
             <summary>
               <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -404,7 +405,7 @@
 
     <div class="transition-card mt-8">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      <p class="text-neutral-300">You're set — Zed is open. Continue to the shared <a href="#in-zed">In-Zed Setup</a>.</p>
+      <p class="text-neutral-300">You're set. Zed is open. Continue to the shared <a href="#in-zed">In-Zed Setup</a>.</p>
     </div>
 
   </div>
@@ -430,7 +431,7 @@
           <h3 class="step-title">Before You Start</h3>
         </div>
         <div class="step-body mt-4">
-          <p>Virtualization lets your computer run Linux inside Windows — enabling it is safe and won't void your warranty.</p>
+          <p>Virtualization lets your computer run Linux inside Windows. Enabling it is safe and won't void your warranty.</p>
           <p>First, make sure Windows is up to date: Settings → Windows Update. Then check virtualization is on: open Task Manager (<code class="inline">Ctrl+Shift+Esc</code>) → Performance tab → CPU → look for "Virtualization: Enabled." If it says Disabled, reboot into BIOS and enable it.</p>
           <div class="overflow-x-auto rounded-lg border border-ink-700">
             <table class="bios-table">
@@ -454,7 +455,7 @@
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
-              <p>WSL runs a real Linux kernel alongside Windows, and that needs CPU virtualization support turned on in BIOS. It's a one-time setting — you won't need to touch it again.</p>
+              <p>WSL runs a real Linux kernel alongside Windows, and that needs CPU virtualization support turned on in BIOS. It's a one-time setting; you won't need to touch it again.</p>
             </div>
           </details>
         </div>
@@ -496,13 +497,13 @@
           <h3 class="step-title">Ubuntu First Launch</h3>
         </div>
         <div class="step-body mt-4">
-          <p>After reboot, Ubuntu launches automatically (or open it from the Start menu). It asks you to create a Unix username and password — choose any, and remember the password (you'll use it with <code class="inline">sudo</code>).</p>
+          <p>After reboot, Ubuntu launches automatically (or open it from the Start menu). It asks you to create a Unix username and password. Choose any, and remember the password: you'll use it with <code class="inline">sudo</code>.</p>
           <figure class="screenshot">
             <div class="placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Ubuntu first launch — create username and password</span>
+              <span>Screenshot: Ubuntu first launch: create username and password</span>
             </div>
-            <!-- Replace placeholder with: <img src="assets/ubuntu-first-launch.webp" alt="Ubuntu first launch — create username and password" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <!-- Replace placeholder with: <img src="assets/ubuntu-first-launch.webp" alt="Ubuntu first launch: create username and password" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
             <figcaption>The Ubuntu console prompting for a username and password.</figcaption>
           </figure>
         </div>
@@ -515,7 +516,7 @@
           <h3 class="step-title">Update Ubuntu</h3>
         </div>
         <div class="step-body mt-4">
-          <p>Fresh Ubuntu is out of date — bring it current.</p>
+          <p>Fresh Ubuntu is out of date. Bring it current.</p>
           <div class="code-block">
             <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
             <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
@@ -563,14 +564,14 @@
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
-              <p>On WSL this error is common. Edit <code class="inline">/etc/passwd</code> directly with Nano — a simple editor, no Vim needed.</p>
+              <p>On WSL this error is common. Edit <code class="inline">/etc/passwd</code> directly with Nano, a simple editor with no Vim required.</p>
               <div class="code-block">
                 <pre><code>sudo nano /etc/passwd</code></pre>
                 <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
                 </button>
               </div>
-              <p>Find the line that starts with your username (scroll with arrow keys). The last field on that line is the shell path — it's probably <code class="inline">/bin/bash</code>. Change it to <code class="inline">/usr/bin/zsh</code>.</p>
+              <p>Find the line that starts with your username (scroll with arrow keys). The last field on that line is the shell path; it's probably <code class="inline">/bin/bash</code>. Change it to <code class="inline">/usr/bin/zsh</code>.</p>
               <ol class="list-decimal pl-5 space-y-1">
                 <li><code class="inline">Ctrl+W</code>, then type your username → <code class="inline">Enter</code> to jump to your line</li>
                 <li>Use <code class="inline">→</code> / <code class="inline">←</code> to move to <code class="inline">/bin/bash</code> and change it to <code class="inline">/usr/bin/zsh</code></li>
@@ -601,7 +602,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           <h3 class="step-title">Install Oh My Zsh</h3>
         </div>
         <div class="step-body mt-4">
-          <p>Same installer as macOS — a clearer prompt and directory display.</p>
+          <p>Same installer as macOS. It gives you a clearer prompt and directory display.</p>
           <div class="code-block">
             <pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
             <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
@@ -667,7 +668,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
         <div class="step-body mt-4">
           <div class="callout callout-caution">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            <div><span class="label">Type <code class="inline">wsl</code> every time</span><p class="text">Every time you open Windows Terminal you start in PowerShell — a different shell with different commands. Type <code class="inline">wsl</code> to drop into Ubuntu before running anything from this guide.</p></div>
+            <div><span class="label">Type <code class="inline">wsl</code> every time</span><p class="text">Every time you open Windows Terminal you start in PowerShell, a different shell with different commands. Type <code class="inline">wsl</code> to drop into Ubuntu before running anything from this guide.</p></div>
           </div>
           <div class="code-block">
             <pre><code>wsl</code></pre>
@@ -675,7 +676,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
             </button>
           </div>
-          <p>Once you're in WSL, run <code class="inline">cd ~</code> to make sure you're in your Linux home directory — not the Windows filesystem. Everything you set up here lives on the Linux side.</p>
+          <p>Once you're in WSL, run <code class="inline">cd ~</code> to make sure you're in your Linux home directory, not the Windows filesystem. Everything you set up here lives on the Linux side.</p>
         </div>
       </div>
 
@@ -686,7 +687,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           <h3 class="step-title">You're in Zed via WSL Remote</h3>
         </div>
         <div class="step-body mt-4">
-          <p>You're connected to your WSL distribution from inside Zed. The terminal, the file tree, and every git command now run in Linux — exactly the same as macOS from here on out.</p>
+          <p>You're connected to your WSL distribution from inside Zed. The terminal, the file tree, and every git command now run in Linux, exactly the same as macOS from here on out.</p>
         </div>
       </div>
 
@@ -716,7 +717,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           <h3 class="step-title">Clone the Example Project</h3>
         </div>
         <div class="step-body mt-4">
-          <p>You'll clone <code class="inline">simonteague6/profile-card</code> — a simple profile card that shows how commits and branches work together. It's the demo for the Zed tour, not the real club project.</p>
+          <p>You'll clone <code class="inline">simonteague6/profile-card</code>, a simple profile card that shows how commits and branches work together. It's the demo for the Zed tour, not the real club project.</p>
           <p>Open Zed's built-in terminal: <code class="inline">Ctrl+`</code> (that's the backtick key, left of <code class="inline">1</code>). Then run these one at a time:</p>
           <div class="code-block">
             <pre><code>mkdir -p ~/projects</code></pre>
@@ -744,7 +745,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
-              <p>If you've never used git before, set your name and email so any commits you make later are attributed to you. These only need to be set once — git remembers them.</p>
+              <p>If you've never used git before, set your name and email so any commits you make later are attributed to you. These only need to be set once; git remembers them.</p>
               <div class="code-block">
                 <pre><code>git config --global user.name "Your Name"</code></pre>
                 <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
@@ -761,7 +762,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           </details>
           <div class="callout callout-caution">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            <div><span class="label">Windows/WSL: always clone in the terminal</span><p class="text">The command palette clone opens a Windows filesystem picker — that won't work with WSL. Always use the terminal on Windows. (On macOS, the command palette works fine if you prefer it.)</p></div>
+            <div><span class="label">Windows/WSL: always clone in the terminal</span><p class="text">The command palette clone opens a Windows filesystem picker, which won't work with WSL. Always use the terminal on Windows. (On macOS, the command palette works fine if you prefer it.)</p></div>
           </div>
         </div>
       </div>
@@ -787,13 +788,13 @@ How do I set zsh as my default shell on WSL?</code></pre>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
             </button>
           </div>
-          <p>Should run without "not found" — inside the cloned project it shows branch info.</p>
+          <p>Should run without "not found." Inside the cloned project it also shows branch info.</p>
           <figure class="screenshot">
             <div class="placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Terminal verification — echo $SHELL and git status</span>
+              <span>Screenshot: Terminal verification: echo $SHELL and git status</span>
             </div>
-            <!-- Replace placeholder with: <img src="assets/terminal-verify.webp" alt="Terminal verification — echo $SHELL and git status" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <!-- Replace placeholder with: <img src="assets/terminal-verify.webp" alt="Terminal verification: echo $SHELL and git status" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
             <figcaption>A clean verification: the right shell and git responding.</figcaption>
           </figure>
           <details class="collapsible" data-severity="blue">
@@ -822,26 +823,26 @@ How do I set zsh as my default shell on WSL?</code></pre>
     <h2 class="mt-2 text-3xl font-bold text-accent-600 sm:text-4xl">Zed UI Tour</h2>
     <p class="mt-4 max-w-2xl text-neutral-400">A quick walk through Zed's features using the example project you just cloned. On Windows, this also confirms where your projects live on disk.</p>
 
-    <p class="mt-6 text-neutral-400">Zed's window is split into a few key areas. The <strong>file tree</strong> lives on the left — you'll see <code class="inline">index.html</code>, <code class="inline">style.css</code>, and <code class="inline">README.md</code> here. The <strong>editor</strong> takes up the center. At the very top, a bar shows your current branch and lets you switch between open projects. Everything else — terminal, git graph, agent panel — slides open from the bottom or side when you need it.</p>
+    <p class="mt-6 text-neutral-400">Zed's window is split into a few key areas. The <strong>file tree</strong> lives on the left; you'll see <code class="inline">index.html</code>, <code class="inline">style.css</code>, and <code class="inline">README.md</code> here. The <strong>editor</strong> takes up the center. At the very top, a bar shows your current branch and lets you switch between open projects. Everything else (terminal, git graph, agent panel) slides open from the bottom or side when you need it.</p>
 
     <h3 class="step-title mt-8">Command palette</h3>
     <div class="step-body">
-      <p><code class="inline">Cmd+Shift+P</code> (macOS) or <code class="inline">Ctrl+Shift+P</code> (Windows) opens the command palette — the fastest way to do anything in Zed. Search for "clone," "open folder," "toggle terminal," or any action. You can drive the entire editor from here without remembering shortcuts.</p>
+      <p><code class="inline">Cmd+Shift+P</code> (macOS) or <code class="inline">Ctrl+Shift+P</code> (Windows) opens the command palette, the fastest way to do anything in Zed. Search for "clone," "open folder," "toggle terminal," or any action. You can drive the entire editor from here without remembering shortcuts.</p>
     </div>
 
     <h3 class="step-title mt-8">File picker</h3>
     <div class="step-body">
-      <p><code class="inline">Cmd+P</code> (macOS) or <code class="inline">Ctrl+P</code> (Windows) opens a fuzzy file finder — type any part of a filename to jump to it instantly.</p>
+      <p><code class="inline">Cmd+P</code> (macOS) or <code class="inline">Ctrl+P</code> (Windows) opens a fuzzy file finder. Type any part of a filename to jump to it instantly.</p>
     </div>
 
     <h3 class="step-title mt-8">Git graph &amp; branches</h3>
     <div class="step-body">
-      <p>Open the command palette and search "branches" (or "git graph") to pull up the project history. You'll see commits stacked on <code class="inline">main</code> and two branches that split off and merged back — <code class="inline">bugfix/typo-in-bio</code> and <code class="inline">feature/add-paragraph</code>.</p>
+      <p>Open the command palette and search "branches" (or "git graph") to pull up the project history. You'll see commits stacked on <code class="inline">main</code> and two branches that split off and merged back: <code class="inline">bugfix/typo-in-bio</code> and <code class="inline">feature/add-paragraph</code>.</p>
       <p>Try these:</p>
       <ul class="list-disc pl-5 space-y-1 mt-2">
-        <li><strong>Switch branches</strong> — click the branch name in the top bar (it says <code class="inline">main</code> right now) and pick another. The card updates to show what that branch looks like.</li>
-        <li><strong>View a diff</strong> — click any commit or branch in the graph. Zed shows you exactly which lines were added or removed, color-coded green and red.</li>
-        <li><strong>Stay in sync</strong> — the graph also tells you if your local copy is behind the remote. When the club project gets updates, this is how you'll know to run <code class="inline">git pull</code>.</li>
+        <li><strong>Switch branches:</strong> click the branch name in the top bar (it says <code class="inline">main</code> right now) and pick another. The card updates to show what that branch looks like.</li>
+        <li><strong>View a diff:</strong> click any commit or branch in the graph. Zed shows you exactly which lines were added or removed, color-coded green and red.</li>
+        <li><strong>Stay in sync:</strong> the graph also tells you if your local copy is behind the remote. When the club project gets updates, this is how you'll know to run <code class="inline">git pull</code>.</li>
       </ul>
     </div>
 
@@ -852,7 +853,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
 
     <h3 class="step-title mt-8">Agent Panel</h3>
     <div class="step-body">
-      <p>The sidebar shows agent conversation threads, each tied to a project directory. No setup needed — just know it's there when you're ready to explore it later.</p>
+      <p>The sidebar shows agent conversation threads, each tied to a project directory. No setup needed; just know it's there when you're ready to explore it later.</p>
     </div>
 
     <div class="step-body mt-8">
@@ -862,9 +863,9 @@ How do I set zsh as my default shell on WSL?</code></pre>
     <figure class="screenshot">
       <div class="placeholder">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <span>Screenshot: Annotated Zed UI tour — command palette, file picker, git graph, terminal, Agent Panel</span>
+        <span>Screenshot: Annotated Zed UI tour: command palette, file picker, git graph, terminal, Agent Panel</span>
       </div>
-      <!-- Replace placeholder with: <img src="assets/zed-ui-tour.webp" alt="Annotated Zed UI tour — command palette, file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+      <!-- Replace placeholder with: <img src="assets/zed-ui-tour.webp" alt="Annotated Zed UI tour: command palette, file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
       <figcaption>The five areas this tour covers, called out on one screenshot.</figcaption>
     </figure>
   </div>
@@ -879,8 +880,8 @@ How do I set zsh as my default shell on WSL?</code></pre>
     <div class="step-body mt-4 space-y-4">
       <p>Your environment is ready. Now the fundamentals.</p>
       <p><strong>Version control</strong> is a system that records changes to your files over time so you can undo mistakes, experiment safely, and work alongside teammates without overwriting each other's code. Git is the tool; GitHub is where the club stores its repositories.</p>
-      <p>The unit of version control is the <strong>commit</strong> — a saved snapshot with a message that describes what changed and why. Think of it like a checkpoint in a game: you can always get back to a working state, no matter how far you've wandered.</p>
-      <p>Below are a few curated starting points. Work through them at your own pace — you don't need to finish them before the next club meeting.</p>
+      <p>The unit of version control is the <strong>commit</strong>, a saved snapshot with a message that describes what changed and why. Think of it like a checkpoint in a game: you can always get back to a working state, no matter how far you've wandered.</p>
+      <p>Below are a few curated starting points. Work through them at your own pace; you don't need to finish them before the next club meeting.</p>
     </div>
 
     <ul class="mt-8 space-y-3">
@@ -894,7 +895,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
       </a></li>
       <li><a class="next-link" href="https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-        <span><span class="title">Ubuntu command line for beginners</span><span class="url">ubuntu.com/desktop/docs/… — lengthy, skim the first sections</span></span>
+        <span><span class="title">Ubuntu command line for beginners</span><span class="url">ubuntu.com/desktop/docs/… (lengthy, skim the first sections)</span></span>
       </a></li>
       <li><a class="next-link" href="https://zed.dev/docs/getting-started" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
@@ -910,7 +911,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
 <footer class="border-t border-ink-700 py-10">
   <div class="mx-auto flex max-w-4xl flex-col items-center gap-2 px-4 text-center sm:px-6 lg:px-8">
     <span class="flex h-7 w-7 items-center justify-center rounded-md border border-accent-700 text-accent-400"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></svg></span>
-    <p class="text-sm text-neutral-500">Rowdy Creators — Setup Guide</p>
+    <p class="text-sm text-neutral-500">Rowdy Creators: Setup Guide</p>
     <p class="text-xs text-neutral-600">Built for new members. Follow it on a fresh machine and tell us what broke.</p>
   </div>
 </footer>
@@ -938,7 +939,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
         }
         function fail() {
           btn.classList.add('failed');
-          btn.innerHTML = CHECK + '<span>Copy failed — select &amp; copy</span>';
+          btn.innerHTML = CHECK + '<span>Copy failed, select &amp; copy</span>';
           btn.setAttribute('aria-label', 'Copy failed');
           setTimeout(function () { btn.classList.remove('failed'); btn.innerHTML = orig; btn.setAttribute('aria-label', origLabel); }, 2500);
         }
