@@ -433,6 +433,10 @@
         <div class="step-body mt-4">
           <p>Virtualization lets your computer run Linux inside Windows. Enabling it is safe and won't void your warranty.</p>
           <p>First, make sure Windows is up to date: Settings → Windows Update. Then check virtualization is on: open Task Manager (<code class="inline">Ctrl+Shift+Esc</code>) → Performance tab → CPU → look for "Virtualization: Enabled." If it says Disabled, reboot into BIOS and enable it.</p>
+          <figure class="screenshot">
+            <img src="assets/win-11-task-manager.png" alt="Task Manager Performance tab showing CPU virtualization enabled" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
+            <figcaption>Task Manager → Performance → CPU: "Virtualization: Enabled" near the bottom right.</figcaption>
+          </figure>
           <div class="overflow-x-auto rounded-lg border border-ink-700">
             <table class="bios-table">
               <thead>
@@ -469,7 +473,11 @@
         </div>
         <div class="step-body mt-4">
           <p>WSL gives you a real Ubuntu Linux environment inside Windows. This requires Windows 10 v2004+ or Windows 11.</p>
-          <p>Open <strong>PowerShell as Administrator</strong> (right-click Start → Terminal (Admin)).</p>
+          <p>Open <strong>PowerShell as Administrator</strong>: press the Start key, type <code class="inline">powershell</code>, then click "Run as Administrator" on the right.</p>
+          <figure class="screenshot">
+            <img src="assets/win-11-open-powershell-as-admin.png" alt="Windows search for powershell with Run as Administrator highlighted" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
+            <figcaption>Search for "powershell," then choose "Run as Administrator."</figcaption>
+          </figure>
           <div class="code-block">
             <pre><code>wsl --install</code></pre>
             <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
@@ -499,11 +507,7 @@
         <div class="step-body mt-4">
           <p>After reboot, Ubuntu launches automatically (or open it from the Start menu). It asks you to create a Unix username and password. Choose any, and remember the password: you'll use it with <code class="inline">sudo</code>.</p>
           <figure class="screenshot">
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Ubuntu first launch: create username and password</span>
-            </div>
-            <!-- Replace placeholder with: <img src="assets/ubuntu-first-launch.webp" alt="Ubuntu first launch: create username and password" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <img src="assets/win-11-wsl-into-ubuntu.png" alt="Ubuntu first launch: create username and password" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>The Ubuntu console prompting for a username and password.</figcaption>
           </figure>
         </div>
@@ -592,6 +596,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
               </div>
             </div>
           </details>
+          <p>Close the terminal, reopen it, and run <code class="inline">wsl</code> to get back into Ubuntu; the shell change takes effect on the next launch.</p>
         </div>
       </div>
 
@@ -599,6 +604,22 @@ How do I set zsh as my default shell on WSL?</code></pre>
       <div class="step-card">
         <div class="flex items-start gap-4">
           <span class="step-num">6</span>
+          <h3 class="step-title">Skip the Zsh Setup Menu</h3>
+        </div>
+        <div class="step-body mt-4">
+          <p>The first time Zsh runs with no config file, it shows a setup menu asking how you'd like to configure it. Ignore it: the next step (Oh My Zsh) will write your <code class="inline">.zshrc</code> for you.</p>
+          <p>Press <code class="inline">0</code> to exit and create an empty config file, then continue.</p>
+          <figure class="screenshot">
+            <img src="assets/win-11-zsh-initial-config.png" alt="Zsh new user configuration menu on first launch" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
+            <figcaption>This menu appears once; pressing 0 skips it for good.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Windows Step 7 -->
+      <div class="step-card">
+        <div class="flex items-start gap-4">
+          <span class="step-num">7</span>
           <h3 class="step-title">Install Oh My Zsh</h3>
         </div>
         <div class="step-body mt-4">
@@ -610,20 +631,16 @@ How do I set zsh as my default shell on WSL?</code></pre>
             </button>
           </div>
           <figure class="screenshot">
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Oh My Zsh success screen</span>
-            </div>
-            <!-- Replace placeholder with: <img src="assets/ohmyzsh-success.webp" alt="Oh My Zsh success screen" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <img src="assets/win-11-oh-my-zsh.png" alt="Oh My Zsh success screen" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>What success looks like inside Ubuntu on WSL.</figcaption>
           </figure>
         </div>
       </div>
 
-      <!-- Windows Step 7 -->
+      <!-- Windows Step 8 -->
       <div class="step-card">
         <div class="flex items-start gap-4">
-          <span class="step-num">7</span>
+          <span class="step-num">8</span>
           <h3 class="step-title">Install Zed on Windows</h3>
         </div>
         <div class="step-body mt-4">
@@ -635,10 +652,10 @@ How do I set zsh as my default shell on WSL?</code></pre>
         </div>
       </div>
 
-      <!-- Windows Step 8 -->
+      <!-- Windows Step 9 -->
       <div class="step-card">
         <div class="flex items-start gap-4">
-          <span class="step-num">8</span>
+          <span class="step-num">9</span>
           <h3 class="step-title">Connect via WSL Remote</h3>
         </div>
         <div class="step-body mt-4">
@@ -649,20 +666,16 @@ How do I set zsh as my default shell on WSL?</code></pre>
           </div>
           <p>A fresh WSL terminal drops you in <code class="inline">/mnt/c/Users/...</code> (your Windows home). Move to your Linux home first: run <code class="inline">cd ~</code>.</p>
           <figure class="screenshot">
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: WSL Remote picker in Zed</span>
-            </div>
-            <!-- Replace placeholder with: <img src="assets/wsl-remote-picker.webp" alt="WSL Remote picker in Zed" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <img src="assets/win-11-zed-wsl-remote-proj-picker.png" alt="WSL Remote picker in Zed" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>Where the WSL Remote appears in Zed's file picker.</figcaption>
           </figure>
         </div>
       </div>
 
-      <!-- Windows Step 9 -->
+      <!-- Windows Step 10 -->
       <div class="step-card">
         <div class="flex items-start gap-4">
-          <span class="step-num">9</span>
+          <span class="step-num">10</span>
           <h3 class="step-title">Open Windows Terminal the Right Way</h3>
         </div>
         <div class="step-body mt-4">
@@ -680,10 +693,10 @@ How do I set zsh as my default shell on WSL?</code></pre>
         </div>
       </div>
 
-      <!-- Windows Step 10 -->
+      <!-- Windows Step 11 -->
       <div class="step-card">
         <div class="flex items-start gap-4">
-          <span class="step-num">10</span>
+          <span class="step-num">11</span>
           <h3 class="step-title">You're in Zed via WSL Remote</h3>
         </div>
         <div class="step-body mt-4">
