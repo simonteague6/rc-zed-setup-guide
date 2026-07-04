@@ -19,8 +19,8 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 7. As a new club member, I want to see screenshots of what success looks like (Oh My Zsh, WSL Remote picker, verification), so that I know I'm on the right track.
 8. As a club lead, I want a section that explains version control and commits at a high level, so that I don't have to explain these concepts five times a semester.
 9. As a new club member, I want curated links to git basics, terminal usage, and branching strategy resources, so that I can continue learning after setup.
-10. As a new club member, I want to clone an example project and tour Zed's file picker, git graph, terminal, and Agent Panel, so that I'm comfortable in the editor before working on the real club project.
-11. As a new member who doesn't know what a terminal is, I want the command palette route for cloning (not the terminal), so that I'm not intimidated by a black window with a blinking cursor.
+10. As a new club member, I want to clone an example project and tour Zed's command palette, file picker, git graph, terminal, and Agent Panel, so that I'm comfortable in the editor before working on the real club project.
+11. As a new member who doesn't know what a terminal is, I want clear step-by-step terminal commands with copy buttons, so that I can follow along without understanding every detail yet.
 12. As a Windows user, I want a note explaining that I must type `wsl` every time I open Windows Terminal — otherwise I'm in PowerShell and commands from the guide won't work.
 13. As a club member on either OS, I want to verify `echo $SHELL` and `git status` at the end, so that I'm confident my environment is ready.
 
@@ -33,7 +33,7 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 3. **Install Zed** — Recommended Path (collapsible, starts open): `brew install --cask zed` plus Homebrew install command and brew.sh link. Quick Path (collapsible, starts closed): zed.dev download. Zed installation docs link called out at top.
 4. **Verify zsh** — `echo $SHELL` inline. Collapsible fallback if missing.
 5. **Install Oh My Zsh** — `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`. Screenshot: success screen.
-6. **Clone Example Project** — Zed command palette (Recommended Path). Terminal mentioned in passing. Screenshot: file tree of cloned project.
+6. **Clone Example Project** — Via Zed's built-in terminal (`Ctrl+\``): `mkdir -p ~/projects`, `git clone`, `cd profile-card && zed .`. Git config collapsible. Screenshot: file tree of cloned project.
 7. **Verify** — `echo $SHELL`, `git status` inline.
 8. **→ Zed UI Tour** (shared section)
 
@@ -49,15 +49,15 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 7. **Install Zed on Windows** — zed.dev download. Explicit: this is for Windows, not inside WSL.
 8. **Connect via WSL Remote** — Always visible critical warning (not collapsible). Screenshot: WSL Remote picker. Fresh WSL lands in `/mnt/c/Users/...` (Windows home); `cd` to Linux home (`~`).
 9. **Terminal note** — Type `wsl` every time you open Windows Terminal. PowerShell is a different language.
-10. **Clone Example Project** — `mkdir -p ~/projects` first, then Zed command palette.
+10. **Clone Example Project** — Via Zed's built-in terminal (`Ctrl+\``): `mkdir -p ~/projects`, `git clone`, `cd profile-card && zed .`. Critical warning: always use terminal on WSL, command palette opens Windows filesystem. Git config collapsible.
 11. **Verify** — `echo $SHELL`, `git status` inline.
 12. **→ Zed UI Tour** (shared section)
 
 ### Zed UI Tour (shared, end-of-guide)
 
-- Clone Example Project (`thurwitz/example-branches`) into `~/projects/`.
-- Walkthrough: file picker, git graph + branches, terminal, Agent Panel (awareness only, no AI setup).
-- For Windows: establishes where projects live on disk.
+- Clone Example Project (`simonteague6/profile-card`) into `~/projects/` via Zed's built-in terminal (`Ctrl+\``). Windows/WSL: always use terminal — command palette clone opens the Windows filesystem. macOS: terminal or command palette both work.
+- Git config setup covered (collapsible): `git config --global user.name` and `user.email` — set once, used forever.
+- Walkthrough: command palette (`Cmd/Ctrl+Shift+P` — the primary way to drive Zed), file picker, git graph + branches (real tree with merges), terminal, Agent Panel (awareness only).
 
 ### Next Steps (end-of-guide)
 
@@ -111,7 +111,7 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 ### Zed Details
 - Zed installation docs linked at the top of each OS path.
 - Agent Panel: awareness only — no AI setup or configuration.
-- Example Project: `thurwitz/example-branches` — public, 8 branches, 3 files, simple structure.
+- Example Project: `simonteague6/profile-card` — public, simple profile card. Real git history: multiple commits on `main`, two branches (`bugfix/typo-in-bio`, `feature/add-paragraph`) that diverge and merge back with `--no-ff`. Shows the difference between a commit and a branch.
 
 ### Next Steps
 - Inline version-control explanation: light, few paragraphs.
@@ -135,6 +135,6 @@ A single-page static website (HTML + Tailwind CDN, no build step) that walks a n
 
 - The user will capture screenshots during fresh setup on both macOS and Windows. Four screenshots are non-negotiable: WSL Remote picker, Zed annotated UI tour, Oh My Zsh success screen, terminal verification.
 - Screenshot count is not capped. Mostly small, cropped shots of specific UI elements — not full-screen.
-- The Example Project (`thurwitz/example-branches`) is distinct from the real club project. The club project is selected later.
+- The Example Project (`simonteague6/profile-card`) is distinct from the real club project. The club project is selected later.
 - The guide content will be written by the agent; the user will then follow it step-by-step on a fresh machine and provide feedback.
 - `CONTEXT.md` holds the domain glossary (23 terms). `docs/adr/0001-single-page-with-os-sections.md` holds the information architecture decision.

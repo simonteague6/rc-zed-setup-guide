@@ -712,23 +712,43 @@ How do I set zsh as my default shell on WSL?</code></pre>
           <h3 class="step-title">Clone the Example Project</h3>
         </div>
         <div class="step-body mt-4">
-          <p>You'll clone a small public repo (<code class="inline">thurwitz/example-branches</code>) that has several branches — it's a prop for the Zed tour, not the real club project.</p>
-          <p>We recommend using Zed's command palette so you never touch the terminal:</p>
-          <ol class="list-decimal pl-5 space-y-1">
-            <li>Open the command palette: <code class="inline">Cmd+Shift+P</code> on macOS, <code class="inline">Ctrl+Shift+P</code> on Windows</li>
-            <li>Search for the clone command</li>
-            <li>Paste <code class="inline">https://github.com/thurwitz/example-branches</code></li>
-            <li>Choose <code class="inline">~/projects</code> as the destination</li>
-          </ol>
+          <p>You'll clone <code class="inline">simonteague6/profile-card</code> — a simple profile card that shows how commits and branches work together. It's the demo for the Zed tour, not the real club project.</p>
+          <p>Open Zed's built-in terminal: <code class="inline">Ctrl+`</code> (that's the backtick key, left of <code class="inline">1</code>). Then run these one at a time:</p>
+          <div class="code-block">
+            <pre><code>mkdir -p ~/projects</code></pre>
+            <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
+            </button>
+          </div>
+          <div class="code-block">
+            <pre><code>cd ~/projects &amp;&amp; git clone https://github.com/simonteague6/profile-card</code></pre>
+            <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
+            </button>
+          </div>
+          <div class="code-block">
+            <pre><code>cd profile-card &amp;&amp; zed .</code></pre>
+            <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
+            </button>
+          </div>
+          <p><code class="inline">zed .</code> opens the current directory in Zed's file tree. You'll see <code class="inline">index.html</code>, <code class="inline">style.css</code>, and <code class="inline">README.md</code> appear.</p>
           <details class="collapsible" data-severity="blue">
             <summary>
               <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              <span class="label">Prefer the terminal instead?</span>
+              <span class="label">First time using git? Set your name and email</span>
               <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <div class="content">
+              <p>If you've never used git before, set your name and email so any commits you make later are attributed to you. These only need to be set once — git remembers them.</p>
               <div class="code-block">
-                <pre><code>git clone https://github.com/thurwitz/example-branches ~/projects/example-branches</code></pre>
+                <pre><code>git config --global user.name "Your Name"</code></pre>
+                <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
+                </button>
+              </div>
+              <div class="code-block">
+                <pre><code>git config --global user.email "your@email.com"</code></pre>
                 <button type="button" class="copy-btn" aria-label="Copy command to clipboard">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy</span>
                 </button>
@@ -737,7 +757,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           </details>
           <div class="callout callout-caution">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            <div><span class="label">Windows/WSL: create the projects folder first</span><p class="text">If <code class="inline">~/projects</code> doesn't exist yet, run <code class="inline">mkdir -p ~/projects</code> before cloning.</p></div>
+            <div><span class="label">Windows/WSL: always clone in the terminal</span><p class="text">The command palette clone opens a Windows filesystem picker — that won't work with WSL. Always use the terminal on Windows. (On macOS, the command palette works fine if you prefer it.)</p></div>
           </div>
         </div>
       </div>
@@ -798,6 +818,13 @@ How do I set zsh as my default shell on WSL?</code></pre>
     <h2 class="mt-2 text-3xl font-bold text-accent-600 sm:text-4xl">Zed UI Tour</h2>
     <p class="mt-4 max-w-2xl text-neutral-400">A quick walk through Zed's features using the example project you just cloned. On Windows, this also confirms where your projects live on disk.</p>
 
+    <p class="mt-6 text-neutral-400">Zed's window is split into a few key areas. The <strong>file tree</strong> lives on the left — you'll see <code class="inline">index.html</code>, <code class="inline">style.css</code>, and <code class="inline">README.md</code> here. The <strong>editor</strong> takes up the center. At the very top, a bar shows your current branch and lets you switch between open projects. Everything else — terminal, git graph, agent panel — slides open from the bottom or side when you need it.</p>
+
+    <h3 class="step-title mt-8">Command palette</h3>
+    <div class="step-body">
+      <p><code class="inline">Cmd+Shift+P</code> (macOS) or <code class="inline">Ctrl+Shift+P</code> (Windows) opens the command palette — the fastest way to do anything in Zed. Search for "clone," "open folder," "toggle terminal," or any action. You can drive the entire editor from here without remembering shortcuts.</p>
+    </div>
+
     <h3 class="step-title mt-8">File picker</h3>
     <div class="step-body">
       <p><code class="inline">Cmd+P</code> (macOS) or <code class="inline">Ctrl+P</code> (Windows) opens a fuzzy file finder — type any part of a filename to jump to it instantly.</p>
@@ -805,7 +832,13 @@ How do I set zsh as my default shell on WSL?</code></pre>
 
     <h3 class="step-title mt-8">Git graph &amp; branches</h3>
     <div class="step-body">
-      <p>Open Zed's git graph view to see the project history. The example project has 8 branches — switch between them and watch the file tree change to reflect the branch you're on.</p>
+      <p>Open Zed's git graph view to see the project history. You'll see commits stacked on <code class="inline">main</code> and two branches that split off and merged back — <code class="inline">bugfix/typo-in-bio</code> and <code class="inline">feature/add-paragraph</code>.</p>
+      <p>Try these:</p>
+      <ul class="list-disc pl-5 space-y-1 mt-2">
+        <li><strong>Switch branches</strong> — click the branch name in the top bar (it says <code class="inline">main</code> right now) and pick another. The card updates to show what that branch looks like.</li>
+        <li><strong>View a diff</strong> — click any commit or branch in the graph. Zed shows you exactly which lines were added or removed, color-coded green and red.</li>
+        <li><strong>Stay in sync</strong> — the graph also tells you if your local copy is behind the remote. When the club project gets updates, this is how you'll know to run <code class="inline">git pull</code>.</li>
+      </ul>
     </div>
 
     <h3 class="step-title mt-8">Terminal</h3>
@@ -821,10 +854,10 @@ How do I set zsh as my default shell on WSL?</code></pre>
     <figure class="screenshot">
       <div class="placeholder">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <span>Screenshot: Annotated Zed UI tour — file picker, git graph, terminal, Agent Panel</span>
+        <span>Screenshot: Annotated Zed UI tour — command palette, file picker, git graph, terminal, Agent Panel</span>
       </div>
-      <!-- Replace placeholder with: <img src="assets/zed-ui-tour.webp" alt="Annotated Zed UI tour — file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
-      <figcaption>The four areas this tour covers, called out on one screenshot.</figcaption>
+      <!-- Replace placeholder with: <img src="assets/zed-ui-tour.webp" alt="Annotated Zed UI tour — command palette, file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+      <figcaption>The five areas this tour covers, called out on one screenshot.</figcaption>
     </figure>
   </div>
 </section>
