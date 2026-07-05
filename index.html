@@ -398,6 +398,16 @@
         </div>
         <div class="step-body mt-4">
           <p>Launch Zed from Applications (or run <code class="inline">zed</code> in the terminal if Homebrew added it to your path).</p>
+          <details class="collapsible" data-severity="blue">
+            <summary>
+              <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              <span class="label">If <code class="inline">zed</code> isn't found in the terminal</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="content">
+              <p>Common if you installed via the Quick Path (direct download) rather than Homebrew: the <code class="inline">zed</code> command isn't added to your PATH automatically. With Zed open, press <code class="inline">Cmd+Shift+P</code> to open the command palette, type <code class="inline">install cli</code>, and run it. No terminal restart needed; it takes effect immediately.</p>
+            </div>
+          </details>
         </div>
       </div>
 
