@@ -380,11 +380,7 @@
             </div>
           </details>
           <figure class="screenshot">
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Oh My Zsh success screen</span>
-            </div>
-            <!-- Replace placeholder with: <img src="assets/ohmyzsh-success.webp" alt="Oh My Zsh success screen" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <img src="assets/mac-oh-my-zsh.png" alt="Oh My Zsh success screen" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>What the terminal looks like once Oh My Zsh is installed.</figcaption>
           </figure>
         </div>
@@ -406,6 +402,10 @@
             </summary>
             <div class="content">
               <p>Common if you installed via the Quick Path (direct download) rather than Homebrew: the <code class="inline">zed</code> command isn't added to your PATH automatically. With Zed open, press <code class="inline">Cmd+Shift+P</code> to open the command palette, type <code class="inline">install cli</code>, and run it. No terminal restart needed; it takes effect immediately.</p>
+              <figure class="screenshot">
+                <img src="assets/mac-install-cli-binary.png" alt="Zed command palette running cli: install cli binary" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
+                <figcaption>Search "install cli" in the command palette and run it.</figcaption>
+              </figure>
             </div>
           </details>
         </div>
@@ -516,6 +516,10 @@
         </div>
         <div class="step-body mt-4">
           <p>After reboot, Ubuntu launches automatically (or open it from the Start menu). It asks you to create a Unix username and password. Choose any, and remember the password: you'll use it with <code class="inline">sudo</code>.</p>
+          <div class="callout callout-caution">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <div><span class="label">The password won't show as you type</span><p class="text">No characters, dots, or asterisks appear while you type your password — this is normal terminal behavior, not a stuck screen. Keep typing, then press Enter.</p></div>
+          </div>
           <figure class="screenshot">
             <img src="assets/win-11-wsl-into-ubuntu.png" alt="Ubuntu first launch: create username and password" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>The Ubuntu console prompting for a username and password.</figcaption>
@@ -813,11 +817,7 @@ How do I set zsh as my default shell on WSL?</code></pre>
           </div>
           <p>Should run without "not found." Inside the cloned project it also shows branch info.</p>
           <figure class="screenshot">
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              <span>Screenshot: Terminal verification: echo $SHELL and git status</span>
-            </div>
-            <!-- Replace placeholder with: <img src="assets/terminal-verify.webp" alt="Terminal verification: echo $SHELL and git status" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
+            <img src="assets/mac-verify-shell-and-git.png" alt="Terminal verification: echo $SHELL and git status" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
             <figcaption>A clean verification: the right shell and git responding.</figcaption>
           </figure>
           <details class="collapsible" data-severity="blue">
@@ -884,12 +884,8 @@ How do I set zsh as my default shell on WSL?</code></pre>
     </div>
 
     <figure class="screenshot">
-      <div class="placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <span>Screenshot: Annotated Zed UI tour: command palette, file picker, git graph, terminal, Agent Panel</span>
-      </div>
-      <!-- Replace placeholder with: <img src="assets/zed-ui-tour.webp" alt="Annotated Zed UI tour: command palette, file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B"> -->
-      <figcaption>The five areas this tour covers, called out on one screenshot.</figcaption>
+      <img src="assets/mac-zed-tour.png" alt="Annotated Zed UI tour: project picker, git branch picker, file picker, git graph, terminal, Agent Panel" loading="lazy" decoding="async" style="border-radius:.5rem;width:100%;border:1px solid #1B1B1B">
+      <figcaption>The key areas this tour covers, called out on one screenshot.</figcaption>
     </figure>
   </div>
 </section>
