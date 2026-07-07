@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Your First Pull Request — Rowdy Creators</title>
+<meta name="description" content="A step-by-step checklist that takes a brand-new Rowdy Creators member from zero to their first merged pull request.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23080808'/%3E%3Crect%20x='3'%20y='3'%20width='26'%20height='26'%20rx='5'%20fill='none'%20stroke='%23079CA6'%20stroke-width='2'/%3E%3Cpath%20d='M8%2011l5%204-5%204'%20fill='none'%20stroke='%23079CA6'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M15%2020h7'%20stroke='%23079CA6'%20stroke-width='2.5'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #080808;
+    --card: #0D0D0D;
+    --raised: #141414;
+    --border: #1F1F1F;
+    --border-lt: #2A2A2A;
+    --text: #DEDEDE;
+    --muted: #9A9A9A;
+    --faint: #6E6E6E;
+    --accent: #34AEB6;
+    --accent-dim: #079CA6;
+    --accent-dark: #04565B;
+    --accent-pale: #8FD2D7;
+    --green: #4ADE80;
+    --amber: #FBBF24;
+    --red: #F87171;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(7,156,166,.35); color: #fff; }
+  a { color: var(--accent-pale); text-underline-offset: 2px; }
+  a:hover { color: var(--accent); }
+  code { font-family: var(--mono); font-size: .85em; background: var(--raised); border: 1px solid var(--border-lt); border-radius: .25rem; padding: .1em .38em; color: var(--text); }
+  kbd { font-family: var(--mono); font-size: .8em; background: var(--raised); border: 1px solid var(--border-lt); border-bottom-width: 2px; border-radius: .3rem; padding: .1em .45em; }
+  button { font-family: inherit; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; border-radius: .25rem;
+  }
+
+  /* ---------- sticky header / progress ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(8,8,8,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    max-width: 46rem; margin: 0 auto; padding: .65rem 1rem;
+    display: flex; align-items: center; gap: .9rem; flex-wrap: wrap;
+  }
+  .topbar .brand { font-weight: 700; color: #fff; font-size: .9rem; white-space: nowrap; }
+  .topbar .brand span { color: var(--accent); }
+  .progress-wrap { flex: 1 1 8rem; min-width: 7rem; }
+  .progress-track { height: .5rem; border-radius: 999px; background: var(--raised); border: 1px solid var(--border); overflow: hidden; }
+  .progress-fill { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, var(--accent-dim), var(--accent)); transition: width .35s ease; }
+  .progress-label { font-size: .72rem; color: var(--muted); margin-top: .15rem; white-space: nowrap; }
+  .progress-label.done { color: var(--green); font-weight: 600; }
+  .os-toggle { display: inline-flex; border: 1px solid var(--border-lt); border-radius: .5rem; overflow: hidden; }
+  .os-toggle button, .os-tabbar button {
+    background: transparent; border: 0; color: var(--muted); cursor: pointer;
+    font-size: .78rem; font-weight: 600; padding: .35rem .7rem;
+  }
+  body[data-os="mac"] [data-os-tab="mac"],
+  body[data-os="win"] [data-os-tab="win"] { background: var(--accent-dark); color: #fff; }
+  .reset-btn { background: transparent; border: 1px solid var(--border-lt); border-radius: .5rem; color: var(--faint); font-size: .72rem; padding: .35rem .6rem; cursor: pointer; white-space: nowrap; }
+  .reset-btn:hover { color: var(--red); border-color: rgba(239,68,68,.5); }
+
+  /* ---------- layout ---------- */
+  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1rem 5rem; }
+  .hero { text-align: center; padding: 1.5rem 0 .5rem; }
+  .hero .eyebrow { color: var(--accent); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .hero h1 { color: #fff; font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1.15; margin-top: .5rem; }
+  .hero p.sub { color: var(--muted); max-width: 34rem; margin: 1rem auto 0; }
+
+  .stage { margin-top: 3.2rem; counter-reset: step; }
+  .stage-head { display: flex; align-items: baseline; gap: .75rem; border-bottom: 1px solid var(--border); padding-bottom: .6rem; margin-bottom: 1.1rem; }
+  .stage-head .stage-num { font-family: var(--mono); color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .stage-head h2 { color: #fff; font-size: 1.3rem; }
+  .stage-intro { color: var(--muted); font-size: .95rem; margin-bottom: 1.1rem; }
+  .stage-intro p + p { margin-top: .5rem; }
+
+  /* ---------- step cards ---------- */
+  .step-card {
+    counter-increment: step;
+    background: var(--card); border: 1px solid var(--border); border-radius: .75rem;
+    padding: 1.1rem 1.2rem; margin-bottom: .9rem;
+    transition: border-color .2s;
+  }
+  .step-card.checked { border-color: var(--accent-dark); }
+  .step-head { display: flex; align-items: flex-start; gap: .75rem; }
+  .step-num {
+    flex-shrink: 0; width: 1.7rem; height: 1.7rem; border-radius: .45rem;
+    background: var(--raised); border: 1px solid var(--border-lt);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--accent); margin-top: .1rem;
+  }
+  .step-num::before { content: counter(step); }
+  .step-card.checked .step-num { background: var(--accent-dark); color: #fff; border-color: var(--accent-dark); }
+  .step-title { color: #fff; font-size: 1.02rem; font-weight: 600; flex: 1; padding-top: .15rem; }
+  .step-card.checked .step-title { color: var(--muted); }
+  .step-done { display: flex; align-items: center; gap: .4rem; cursor: pointer; user-select: none; color: var(--faint); font-size: .75rem; font-weight: 600; padding-top: .3rem; white-space: nowrap; }
+  .step-done input { width: 1.1rem; height: 1.1rem; accent-color: var(--accent-dim); cursor: pointer; }
+  .step-card.checked .step-done { color: var(--green); }
+  .step-body { margin-top: .7rem; color: var(--text); font-size: .93rem; }
+  .step-body p { margin-bottom: .65rem; }
+  .step-body p:last-child { margin-bottom: 0; }
+  .step-body ul, .step-body ol { margin: 0 0 .65rem 1.2rem; }
+  .step-body li { margin-bottom: .3rem; }
+
+  /* ---------- code blocks ---------- */
+  .code-block { position: relative; margin: .7rem 0; }
+  .code-block pre {
+    margin: 0; overflow-x: auto; border-radius: .5rem;
+    border: 1px solid var(--border-lt); background: var(--raised);
+    padding: .8rem 5.2rem .8rem .9rem; font-size: .84rem; line-height: 1.6;
+  }
+  .code-block code { background: none; border: 0; padding: 0; white-space: pre; }
+  .copy-btn {
+    position: absolute; top: .45rem; right: .45rem;
+    display: inline-flex; align-items: center; gap: .3rem;
+    background: #1B1B1B; border: 1px solid var(--border-lt); border-radius: .4rem;
+    color: var(--muted); font-size: .7rem; font-weight: 600; padding: .3rem .55rem; cursor: pointer;
+  }
+  .copy-btn:hover { color: #fff; background: var(--border-lt); }
+  .copy-btn.copied { color: var(--accent-pale); border-color: var(--accent-dark); }
+  .copy-btn.failed { color: var(--red); border-color: rgba(239,68,68,.4); }
+  .code-note { font-size: .8rem; color: var(--faint); margin-top: -.2rem; }
+
+  /* ---------- fill-in variables ---------- */
+  .var { color: var(--accent-pale); }
+  .var.empty { color: var(--amber); border-bottom: 1px dashed var(--amber); cursor: help; }
+  .idcard {
+    background: var(--card); border: 1px solid var(--accent-dark); border-radius: .75rem;
+    padding: 1.1rem 1.2rem; margin-top: 1.6rem;
+  }
+  .idcard h3 { color: var(--accent-pale); font-size: .95rem; margin-bottom: .3rem; }
+  .idcard p { color: var(--muted); font-size: .85rem; margin-bottom: .8rem; }
+  .idgrid { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+  .idgrid label { display: block; font-size: .72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
+  .idgrid input {
+    width: 100%; background: var(--raised); border: 1px solid var(--border-lt); border-radius: .5rem;
+    color: #fff; font-size: .9rem; padding: .5rem .65rem; font-family: inherit;
+  }
+  .idgrid input:focus { border-color: var(--accent-dim); outline: none; }
+
+  /* ---------- callouts ---------- */
+  .callout { display: flex; gap: .65rem; border-radius: .5rem; padding: .8rem .9rem; margin: .8rem 0; font-size: .88rem; }
+  .callout .ico { flex-shrink: 0; font-size: 1rem; line-height: 1.5; }
+  .callout .label { font-weight: 700; display: block; font-size: .85rem; margin-bottom: .15rem; }
+  .callout-info { border: 1px solid rgba(52,174,182,.35); background: rgba(4,86,91,.14); }
+  .callout-info .label { color: var(--accent-pale); }
+  .callout-warn { border: 1px solid rgba(245,158,11,.4); background: rgba(69,26,3,.2); }
+  .callout-warn .label { color: var(--amber); }
+  .callout-danger { border: 2px solid rgba(239,68,68,.5); background: rgba(127,29,29,.18); }
+  .callout-danger .label { color: var(--red); }
+  .callout-ok { border: 1px solid rgba(74,222,128,.3); background: rgba(20,83,45,.15); }
+  .callout-ok .label { color: var(--green); }
+
+  /* ---------- OS tabs (inline) ---------- */
+  .os-tabs { margin: .8rem 0; border: 1px solid var(--border); border-radius: .6rem; overflow: hidden; }
+  .os-tabbar { display: flex; background: var(--raised); border-bottom: 1px solid var(--border); }
+  .os-tabbar button { padding: .45rem .9rem; font-size: .78rem; }
+  .os-pane { padding: .8rem .9rem; }
+  .os-pane > :first-child { margin-top: 0; }
+  .os-pane > :last-child { margin-bottom: 0; }
+  body[data-os="mac"] [data-os="win"] { display: none; }
+  body[data-os="win"] [data-os="mac"] { display: none; }
+  .os-flag { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); border: 1px solid var(--border-lt); border-radius: 999px; padding: .1rem .55rem; margin-left: .1rem; }
+
+  /* ---------- details / accordions ---------- */
+  details.fold { border: 1px solid var(--border); border-radius: .6rem; background: var(--card); margin: .8rem 0; }
+  details.fold > summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: .6rem;
+    padding: .75rem .9rem; font-size: .9rem; font-weight: 600; color: var(--text);
+  }
+  details.fold > summary::-webkit-details-marker { display: none; }
+  details.fold > summary::after { content: "▾"; margin-left: auto; color: var(--faint); transition: transform .2s; }
+  details.fold[open] > summary::after { transform: rotate(180deg); }
+  details.fold .fold-body { padding: 0 .9rem .9rem; font-size: .9rem; color: var(--text); border-top: 1px solid var(--border); padding-top: .8rem; }
+  details.fold .fold-body p { margin-bottom: .6rem; }
+  details.fold .fold-body p:last-child { margin-bottom: 0; }
+  details.fold.trouble > summary { color: var(--red); }
+  details.fold .ico { flex-shrink: 0; }
+
+  .term-output { color: var(--faint); }
+  .term-output .hl { color: var(--green); }
+
+  .finish {
+    margin-top: 3rem; text-align: center; border: 1px dashed var(--accent-dark); border-radius: .8rem;
+    padding: 1.6rem 1.2rem; background: rgba(4,86,91,.08);
+  }
+  .finish h2 { color: #fff; font-size: 1.2rem; }
+  .finish p { color: var(--muted); font-size: .92rem; margin-top: .5rem; }
+  footer { border-top: 1px solid var(--border); margin-top: 4rem; padding: 1.6rem 1rem; text-align: center; color: var(--faint); font-size: .8rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+  }
+  @media (max-width: 480px) {
+    .step-head { flex-wrap: wrap; }
+    .step-done { width: 100%; justify-content: flex-end; padding-top: .1rem; }
+    .code-block pre { padding-right: .9rem; padding-top: 2.4rem; }
+  }
+</style>
+</head>
+<body data-os="mac">
+
+<!-- ============ sticky progress header ============ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">Rowdy<span>Creators</span> · First PR</span>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 of 0 steps done</div>
+    </div>
+    <div class="os-toggle" role="group" aria-label="Choose your operating system">
+      <button type="button" data-os-tab="mac">macOS</button>
+      <button type="button" data-os-tab="win">Windows</button>
+    </div>
+    <button type="button" class="reset-btn" id="resetBtn">Reset progress</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ hero ============ -->
+<div class="hero">
+  <p class="eyebrow">Rowdy Creators · New Member Onboarding</p>
+  <h1>Your First Pull Request</h1>
+  <p class="sub">This page walks you from a fresh laptop to your own profile card merged into the team's
+  <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">profile-card</a> repo.
+  No experience needed. Do one step at a time, check it off, and take breaks whenever you want —
+  your checkmarks are saved in this browser, so you can close the tab and come back later.</p>
+</div>
+
+<div class="callout callout-info" style="margin-top:1.6rem">
+  <span class="ico">🖥️</span>
+  <div><span class="label">First: pick your operating system</span>
+  Use the <strong>macOS / Windows</strong> switch in the top bar. The page will show only the commands for your machine.</div>
+</div>
+
+<!-- ============ identity inputs ============ -->
+<div class="idcard">
+  <h3>Fill these in once — the commands below will personalize themselves</h3>
+  <p>Anything you leave blank shows as a <span class="var empty">yellow placeholder</span> in the commands. Come back and fill it in after you create your GitHub account in Stage 1.</p>
+  <div class="idgrid">
+    <div>
+      <label for="var-name">Your full name</label>
+      <input id="var-name" type="text" autocomplete="name" placeholder="e.g. Alex Rivera">
+    </div>
+    <div>
+      <label for="var-email">Your GitHub email</label>
+      <input id="var-email" type="email" autocomplete="email" placeholder="e.g. alex@example.com">
+    </div>
+    <div>
+      <label for="var-user">Your GitHub username</label>
+      <input id="var-user" type="text" autocomplete="username" placeholder="e.g. alexrivera">
+    </div>
+  </div>
+</div>
+
+<!-- ============ STAGE 1 ============ -->
+<section class="stage" id="stage-1">
+  <div class="stage-head"><span class="stage-num">STAGE 1</span><h2>Install your tools</h2></div>
+  <div class="stage-intro">
+    <p>You only do this stage once, ever. It gets you a GitHub account, <code>git</code> (the tool that tracks changes to code), and the Zed editor.</p>
+    <p>This is the short version. The club's full <a href="index.html">Setup Guide</a> covers the same steps with screenshots, plus optional shell niceties like Oh&nbsp;My&nbsp;Zsh — if anything here feels too fast, use that page for this stage and come back.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Create a GitHub account</span>
+      <label class="step-done"><input type="checkbox" data-step="s1-account"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>GitHub is the website where the club stores its code. Go to <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">github.com/signup</a> and make a free account.</p>
+      <ul>
+        <li>Use an email you'll still have after graduation (a personal one, not only your UTSA email — you can add both later).</li>
+        <li>Pick a username you'd be OK putting on a resume. You'll be typing it a lot.</li>
+      </ul>
+      <p>Then scroll up and type your username, name, and email into the boxes at the top of this page.</p>
+    </div>
+  </div>
+
+  <!-- ---- macOS tool steps ---- -->
+  <div class="step-card" data-os="mac">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Open Terminal and install the command line tools <span class="os-flag">macOS</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-mac-clt"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Press <kbd>Cmd</kbd>+<kbd>Space</kbd>, type <code>Terminal</code>, and hit Enter. That black window is where you'll paste commands.</p>
+      <p>Now paste this and press Enter (click a command's <strong>Copy</strong> button, then <kbd>Cmd</kbd>+<kbd>V</kbd> in Terminal):</p>
+      <div class="code-block"><pre><code>xcode-select --install</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Click <strong>Install</strong> in the popup and wait for it to finish. This gives you <code>git</code> and other developer tools macOS doesn't ship with. If it says the tools are already installed, that's fine — check this step off.</p>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="mac">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Install Zed <span class="os-flag">macOS</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-mac-zed"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Zed is the code editor the club uses. Go to <a href="https://zed.dev/download" target="_blank" rel="noopener noreferrer">zed.dev/download</a>, download the <code>.dmg</code>, open it, and drag Zed into Applications.</p>
+      <details class="fold">
+        <summary><span class="ico">💡</span> Already use Homebrew? Install it that way instead</summary>
+        <div class="fold-body">
+          <div class="code-block"><pre><code>brew install --cask zed</code></pre><button type="button" class="copy-btn">Copy</button></div>
+          <p>The full <a href="index.html">Setup Guide</a> recommends this path because <code>brew upgrade</code> keeps Zed updated. If you don't know what Homebrew is, the direct download above is perfectly fine.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="mac">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Open Zed and turn on its terminal command <span class="os-flag">macOS</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-mac-open"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Open Zed from Applications. Then press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <code>install cli</code>, and press Enter. This lets you type <code>zed</code> in the terminal to open projects — you'll need it in Stage 3.</p>
+      <p>Zed also has a terminal built in: press <kbd>Ctrl</kbd>+<kbd>`</kbd> (the backtick key, left of <kbd>1</kbd>). From now on, any command on this page can be pasted there.</p>
+    </div>
+  </div>
+
+  <!-- ---- Windows tool steps ---- -->
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Check virtualization is on <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-virt"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>On Windows you'll run your developer tools inside Linux, using something called WSL. That needs one hardware setting turned on. It's safe and won't void any warranty.</p>
+      <p>Open Task Manager (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>) → <strong>Performance</strong> tab → <strong>CPU</strong>. Look for <strong>"Virtualization: Enabled"</strong> near the bottom right.</p>
+      <p>If it says <em>Disabled</em>, it needs to be flipped on in BIOS — the <a href="index.html#windows">Setup Guide's "Before You Start" section</a> has the BIOS key for every laptop brand. Also make sure Windows is up to date (Settings → Windows Update).</p>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Install WSL <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-wsl"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Press the Start key, type <code>powershell</code>, and click <strong>Run as Administrator</strong> on the right. Then paste this and press Enter:</p>
+      <div class="code-block"><pre><code>wsl --install</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>When it finishes, <strong>restart your computer</strong>. (Needs Windows 10 version 2004+ or Windows 11.)</p>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Create your Ubuntu username and password <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-ubuntu"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>After the restart, Ubuntu opens on its own (or find <strong>Ubuntu</strong> in the Start menu). It asks you to create a username and password. Pick anything, and remember the password — you'll type it whenever a command starts with <code>sudo</code>.</p>
+      <div class="callout callout-warn"><span class="ico">⌨️</span>
+        <div><span class="label">The password won't show as you type</span>
+        No dots, no stars, nothing. The screen is not frozen — this is normal terminal behavior. Just type it and press Enter.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Update Ubuntu and install git <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-git"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>In the Ubuntu window, run these two commands, one at a time. The first can take a few minutes — that's normal.</p>
+      <div class="code-block"><pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>sudo apt install git zsh -y</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>(<code>zsh</code> is a nicer shell the <a href="index.html#windows">Setup Guide</a> sets up fully — optional for today, but installing it now saves time later.)</p>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Install Zed — the Windows app <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-zed"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Zed is the code editor the club uses. Go to <a href="https://zed.dev/download" target="_blank" rel="noopener noreferrer">zed.dev/download</a>, download the <strong>Windows</strong> installer, and run it.</p>
+      <div class="callout callout-warn"><span class="ico">⚠️</span>
+        <div><span class="label">This is the Windows app</span>
+        Don't try to install Zed inside Ubuntu. You install it on Windows once, then connect it to Ubuntu in the next step.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card" data-os="win">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Connect Zed to Ubuntu (WSL Remote) <span class="os-flag">Windows</span></span>
+      <label class="step-done"><input type="checkbox" data-step="s1-win-remote"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Open Zed. When opening a project, choose the <strong>WSL Remote</strong> option in the project picker — that connects Zed to your Ubuntu files. The <a href="index.html#windows">Setup Guide</a> has a screenshot of exactly where it is.</p>
+      <div class="callout callout-danger"><span class="ico">🛑</span>
+        <div><span class="label">Two rules that prevent 90% of Windows problems</span>
+        <strong>1.</strong> Every time you open a terminal, type <code>wsl</code> first, then <code>cd ~</code>. Otherwise you're in PowerShell and the commands on this page won't work.<br>
+        <strong>2.</strong> Keep your projects in Ubuntu's home folder (<code>~</code>), never in paths that start with <code>/mnt/c/</code>. Always open projects in Zed through the WSL Remote.</div>
+      </div>
+      <p>Zed also has a terminal built in: press <kbd>Ctrl</kbd>+<kbd>`</kbd> (the backtick key, left of <kbd>1</kbd>). When you're connected via WSL Remote, that terminal is already inside Ubuntu — no <code>wsl</code> needed there.</p>
+    </div>
+  </div>
+
+  <!-- ---- shared: git config ---- -->
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Tell git who you are</span>
+      <label class="step-done"><input type="checkbox" data-step="s1-config"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Every change you save with git gets stamped with a name and email. Set them once and git remembers forever. Run these in your terminal<span data-os="win"> (inside Ubuntu — type <code>wsl</code> first if you opened Windows Terminal)</span>:</p>
+      <div class="code-block"><pre><code>git config --global user.name "<span class="var" data-var="name" data-ph="YOUR NAME">YOUR NAME</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>git config --global user.email "<span class="var" data-var="email" data-ph="you@example.com">you@example.com</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">Use the same email as your GitHub account. If you filled in the boxes at the top of this page, these commands already have your info in them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 2 ============ -->
+<section class="stage" id="stage-2">
+  <div class="stage-head"><span class="stage-num">STAGE 2</span><h2>Set up your GitHub SSH key</h2></div>
+  <div class="stage-intro">
+    <p>An SSH key is like a house key for GitHub: your computer proves it's you without typing a password every time. You make a key pair — a private half that never leaves your laptop, and a public half you give to GitHub.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Make your key</span>
+      <label class="step-done"><input type="checkbox" data-step="s2-keygen"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>In your terminal<span data-os="win"> (inside Ubuntu)</span>, run:</p>
+      <div class="code-block"><pre><code>ssh-keygen -t ed25519 -C "<span class="var" data-var="email" data-ph="you@example.com">you@example.com</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>It asks three questions. <strong>Press Enter for all three</strong> — that accepts the normal file location and skips the extra passphrase (fine for a laptop only you use). You'll see a box of random characters called "randomart"; that means it worked.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Copy the public half of your key</span>
+      <label class="step-done"><input type="checkbox" data-step="s2-copy"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>This command puts your <em>public</em> key on the clipboard (it's safe to share — the private half stays in place):</p>
+      <div class="os-tabs">
+        <div class="os-tabbar" role="group" aria-label="Choose your operating system">
+          <button type="button" data-os-tab="mac">macOS</button>
+          <button type="button" data-os-tab="win">Windows (Ubuntu)</button>
+        </div>
+        <div class="os-pane" data-os="mac">
+          <div class="code-block"><pre><code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code></pre><button type="button" class="copy-btn">Copy</button></div>
+        </div>
+        <div class="os-pane" data-os="win">
+          <div class="code-block"><pre><code>cat ~/.ssh/id_ed25519.pub | clip.exe</code></pre><button type="button" class="copy-btn">Copy</button></div>
+          <p class="code-note">If <code>clip.exe</code> complains, just run <code>cat ~/.ssh/id_ed25519.pub</code>, then select the whole output line with your mouse and copy it.</p>
+        </div>
+      </div>
+      <p>Nothing appears to happen when you run it — that's normal. The key is on your clipboard now.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Give the public key to GitHub</span>
+      <label class="step-done"><input type="checkbox" data-step="s2-add"> Done</label>
+    </div>
+    <div class="step-body">
+      <ol>
+        <li>Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com/settings/keys</a> (sign in if asked).</li>
+        <li>Click <strong>New SSH key</strong>.</li>
+        <li>Title: anything, like <code>my laptop</code>. Key type: leave as <strong>Authentication Key</strong>.</li>
+        <li>Click in the Key box and paste (<span data-os="mac"><kbd>Cmd</kbd>+<kbd>V</kbd></span><span data-os="win"><kbd>Ctrl</kbd>+<kbd>V</kbd></span>). It should start with <code>ssh-ed25519</code>.</li>
+        <li>Click <strong>Add SSH key</strong>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Test it</span>
+      <label class="step-done"><input type="checkbox" data-step="s2-test"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>ssh -T git@github.com</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>The first time, it asks if you're sure you want to connect — type <code>yes</code> and press Enter. Then you should see:</p>
+      <div class="code-block"><pre><code class="term-output">Hi <span class="var" data-var="user" data-ph="your-username">your-username</span>! You've successfully authenticated, but GitHub
+does not provide shell access.</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="callout callout-ok"><span class="ico">✅</span>
+        <div><span class="label">"does not provide shell access" is not an error</span>
+        That whole message means it <em>worked</em>. If you instead see <code>Permission denied (publickey)</code>, open the troubleshooting section at the bottom of this page.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 3 ============ -->
+<section class="stage" id="stage-3">
+  <div class="stage-head"><span class="stage-num">STAGE 3</span><h2>Get the team repo onto your laptop</h2></div>
+  <div class="stage-intro">
+    <p>"Cloning" downloads a copy of the team's repository — including its whole history — onto your machine. You'll clone <code>profile-card</code>, a small practice repo where every member adds their own profile page.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Accept your invite to the repo</span>
+      <label class="step-done"><input type="checkbox" data-step="s3-invite"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Simon adds each member as a collaborator on <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">simonteague6/profile-card</a>. GitHub emails you an invitation — check your inbox (and spam), or look at <a href="https://github.com/notifications" target="_blank" rel="noopener noreferrer">github.com/notifications</a>, and click <strong>Accept</strong>.</p>
+      <p>No invite? Message Simon with your GitHub username. You can keep going — you'll need the invite accepted before Stage 7 (push).</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Clone the repo</span>
+      <label class="step-done"><input type="checkbox" data-step="s3-clone"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>In your terminal<span data-os="win"> (inside Ubuntu — remember: type <code>wsl</code> then <code>cd ~</code> if you opened Windows Terminal)</span>, run these one at a time:</p>
+      <div class="code-block"><pre><code>mkdir -p ~/projects</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>cd ~/projects &amp;&amp; git clone git@github.com:simonteague6/profile-card.git</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">The first command makes a <code>projects</code> folder in your home directory (it's fine if it already exists). The second downloads the repo into it.</p>
+      <div class="callout callout-warn" data-os="win"><span class="ico">⚠️</span>
+        <div><span class="label">Windows: always clone in the terminal</span>
+        Don't use Zed's command palette to clone — it opens a Windows file picker that puts the project on the wrong filesystem. The terminal commands above put it in the right place.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Open the project in Zed</span>
+      <label class="step-done"><input type="checkbox" data-step="s3-open"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>cd ~/projects/profile-card &amp;&amp; zed .</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>You should see <code>index.html</code>, <code>style.css</code>, and <code>README.md</code> in Zed's file tree on the left. That's the existing example card.</p>
+      <p data-os="win" class="code-note">If <code>zed</code> isn't found inside Ubuntu, open Zed on Windows instead, use <strong>Open Folder</strong> through the <strong>WSL Remote</strong>, and pick <code>~/projects/profile-card</code>.</p>
+      <p data-os="mac" class="code-note">If it says <code>zed: command not found</code>, open Zed, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, run <code>install cli</code>, and try again.</p>
+      <details class="fold">
+        <summary><span class="ico">🔍</span> Curious? See the repo's history</summary>
+        <div class="fold-body">
+          <p>This repo was built commit by commit, with two branches that split off and merged back. Run this to see the shape of it:</p>
+          <div class="code-block"><pre><code>git log --oneline --graph --all</code></pre><button type="button" class="copy-btn">Copy</button></div>
+          <p>You're about to add your own branch to that picture. (Press <kbd>q</kbd> to exit the log view if it takes over the terminal.)</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 4 ============ -->
+<section class="stage" id="stage-4">
+  <div class="stage-head"><span class="stage-num">STAGE 4</span><h2>Make your own branch</h2></div>
+  <div class="stage-intro">
+    <p><code>main</code> is the team's shared copy — you never work directly on it. A branch is your own private workspace: you can experiment freely, and nothing touches <code>main</code> until the team approves your pull request.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Check where you are</span>
+      <label class="step-done"><input type="checkbox" data-step="s4-status"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>From now on, run everything in Zed's built-in terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>) — it's already inside the project folder.</p>
+      <div class="code-block"><pre><code>git status</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>You want to see <code>On branch main</code> and <code>nothing to commit, working tree clean</code>. That means you're starting from a clean copy of the team's code.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Create your branch</span>
+      <label class="step-done"><input type="checkbox" data-step="s4-branch"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>git switch -c feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p><code>switch -c</code> means "create this branch and move me onto it." The <code>feature/</code> prefix is the naming style this repo already uses. Zed's top bar now shows your branch name instead of <code>main</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 5 ============ -->
+<section class="stage" id="stage-5">
+  <div class="stage-head"><span class="stage-num">STAGE 5</span><h2>Build your profile card</h2></div>
+  <div class="stage-intro">
+    <p>Your first contribution: one HTML file, your own page, in a <code>cards</code> folder. Everyone gets their own file, named after their GitHub username, so nobody steps on anyone else's work.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Make the cards folder</span>
+      <label class="step-done"><input type="checkbox" data-step="s5-folder"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>mkdir -p cards</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">If someone's card was merged before yours, the folder already exists — <code>-p</code> makes that a non-issue either way.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Create your file</span>
+      <label class="step-done"><input type="checkbox" data-step="s5-file"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>touch cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Now click the new file in Zed's file tree (inside the <code>cards</code> folder) to open it. It's empty — that's next.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Paste the template and make it yours</span>
+      <label class="step-done"><input type="checkbox" data-step="s5-edit"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Copy this into your empty file. It follows the same structure as the repo's existing <code>index.html</code> and reuses the team's stylesheet:</p>
+      <div class="code-block"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;link rel="stylesheet" href="../style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="card"&gt;
+    &lt;h1&gt;Hello, I'm <span class="var" data-var="name" data-ph="YOUR NAME">YOUR NAME</span>&lt;/h1&gt;
+    &lt;p class="bio"&gt;One sentence about who you are.&lt;/p&gt;
+    &lt;p class="goals"&gt;One sentence about what you want to learn this semester.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Then edit the two sentences so they're actually about you. Save with <span data-os="mac"><kbd>Cmd</kbd>+<kbd>S</kbd></span><span data-os="win"><kbd>Ctrl</kbd>+<kbd>S</kbd></span>.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Look at it in your browser</span>
+      <label class="step-done"><input type="checkbox" data-step="s5-preview"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="os-tabs">
+        <div class="os-tabbar" role="group" aria-label="Choose your operating system">
+          <button type="button" data-os-tab="mac">macOS</button>
+          <button type="button" data-os-tab="win">Windows (Ubuntu)</button>
+        </div>
+        <div class="os-pane" data-os="mac">
+          <div class="code-block"><pre><code>open cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
+        </div>
+        <div class="os-pane" data-os="win">
+          <div class="code-block"><pre><code>explorer.exe cards</code></pre><button type="button" class="copy-btn">Copy</button></div>
+          <p class="code-note">That opens the folder in Windows File Explorer — double-click your file to open it in your browser.</p>
+        </div>
+      </div>
+      <p>You should see a small white card with your name on a gray background. If it looks unstyled (plain black text on white), check the stylesheet line says <code>../style.css</code> — with the two dots.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 6 ============ -->
+<section class="stage" id="stage-6">
+  <div class="stage-head"><span class="stage-num">STAGE 6</span><h2>Commit your work</h2></div>
+  <div class="stage-intro">
+    <p>A commit is a saved snapshot with a message — like a checkpoint in a game. Right now your new file only exists on your laptop and git isn't tracking it yet. Committing happens in two moves: stage the file (put it in the box), then commit (seal the box with a label).</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">See what git sees</span>
+      <label class="step-done"><input type="checkbox" data-step="s6-status"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>git status</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Your file shows up in red under "Untracked files." Red just means "git isn't tracking this yet" — nothing is wrong.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Stage your file</span>
+      <label class="step-done"><input type="checkbox" data-step="s6-add"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>git add cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Run <code>git status</code> again if you're curious — the file turned green, meaning it's staged and ready to be committed.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Commit it</span>
+      <label class="step-done"><input type="checkbox" data-step="s6-commit"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>git commit -m "feat: add <span class="var" data-var="user" data-ph="your-username">your-username</span>'s profile card"</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>The <code>-m</code> part is the message — a short note about what this snapshot contains. The <code>feat:</code> prefix means "this adds a feature"; it's the style this repo's history already uses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 7 ============ -->
+<section class="stage" id="stage-7">
+  <div class="stage-head"><span class="stage-num">STAGE 7</span><h2>Push your branch to GitHub</h2></div>
+  <div class="stage-intro">
+    <p>Your commit exists only on your laptop. Pushing uploads your branch to GitHub so the team can see it.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Push</span>
+      <label class="step-done"><input type="checkbox" data-step="s7-push"> Done</label>
+    </div>
+    <div class="step-body">
+      <div class="code-block"><pre><code>git push -u origin feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p><code>origin</code> is git's name for the GitHub copy of the repo, and <code>-u</code> links your local branch to it (you only need <code>-u</code> this first time).</p>
+      <p>In the output, GitHub prints a link that says <strong>"Create a pull request"</strong> — that's your cue for the next stage. If the push is rejected instead, open the troubleshooting section at the bottom.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 8 ============ -->
+<section class="stage" id="stage-8">
+  <div class="stage-head"><span class="stage-num">STAGE 8</span><h2>Open your pull request</h2></div>
+  <div class="stage-intro">
+    <p>A pull request (PR) is how you ask the team to pull your branch into <code>main</code>. It's a conversation, not a submission for a grade — someone looks at your change, maybe suggests tweaks, then merges it.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Start the pull request</span>
+      <label class="step-done"><input type="checkbox" data-step="s8-open"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Go to <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">github.com/simonteague6/profile-card</a>. There's a yellow banner with your branch name and a <strong>"Compare &amp; pull request"</strong> button — click it.</p>
+      <p>No banner? Click the <strong>Pull requests</strong> tab → <strong>New pull request</strong>. Set <strong>base</strong> to <code>main</code> and <strong>compare</strong> to your branch, then <strong>Create pull request</strong>.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Write the title and description</span>
+      <label class="step-done"><input type="checkbox" data-step="s8-fill"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Title: <code>Add <span class="var" data-var="name" data-ph="YOUR NAME">YOUR NAME</span>'s profile card</code></p>
+      <p>Description: a sentence or two is plenty. What you added, and anything you're unsure about. For example: <em>"Adds my profile card in cards/. First PR — let me know if I got the file location right!"</em></p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Click "Create pull request"</span>
+      <label class="step-done"><input type="checkbox" data-step="s8-create"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>That's it — your work is officially up for review. Simon gets a notification automatically. If nothing happens in a day or two, it's completely normal to ping him: <em>"Hey, my PR is up, can you take a look?"</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE 9 ============ -->
+<section class="stage" id="stage-9">
+  <div class="stage-head"><span class="stage-num">STAGE 9</span><h2>Respond to review — then celebrate</h2></div>
+  <div class="stage-intro">
+    <p>A reviewer will read your change and either approve it or leave comments asking for tweaks. Everyone — including people who've coded for decades — gets change requests. It means someone read your work carefully.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Read the feedback</span>
+      <label class="step-done"><input type="checkbox" data-step="s9-read"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>GitHub emails you when someone comments. On your PR page, the <strong>Files changed</strong> tab shows comments pinned to specific lines. If a comment is unclear, reply and ask — that's what the thread is for.</p>
+      <p>If the review is just an approval with no changes requested, check this off and skip to the last step. 🎉</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">Make the requested changes</span>
+      <label class="step-done"><input type="checkbox" data-step="s9-fix"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>Back in Zed, on the <strong>same branch</strong> (check the top bar — no new branch needed), edit your file, save, then:</p>
+      <div class="code-block"><pre><code>git add cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>git commit -m "fix: address review feedback"</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>git push</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">No <code>-u</code> or branch name needed this time — git remembers from Stage 7. The PR updates by itself the moment you push.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-num"></span>
+      <span class="step-title">After the merge: sync up</span>
+      <label class="step-done"><input type="checkbox" data-step="s9-merge"> Done</label>
+    </div>
+    <div class="step-body">
+      <p>When your PR is merged, GitHub shows a purple <strong>Merged</strong> badge. Your card is now part of the team's <code>main</code>. Bring your laptop's copy up to date:</p>
+      <div class="code-block"><pre><code>git switch main &amp;&amp; git pull</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>Your branch did its job and can be deleted (this only removes the local copy; the history is safe in <code>main</code>):</p>
+      <div class="code-block"><pre><code>git branch -d feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>You just did the full loop — branch, build, commit, push, PR, review, merge. That is <em>exactly</em> how real software teams work, and now you've done it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TROUBLESHOOTING ============ -->
+<section class="stage" id="troubleshooting">
+  <div class="stage-head"><span class="stage-num">HELP</span><h2>When things go wrong</h2></div>
+  <div class="stage-intro">
+    <p>Everything in here has happened to every developer ever. Find your error, follow the fix, and if you're still stuck after 20 minutes, ask in the club chat or grab Simon at a meeting — asking early is the pro move, not the embarrassing one.</p>
+  </div>
+
+  <details class="fold trouble">
+    <summary><span class="ico">🔑</span> "Permission denied (publickey)" when testing SSH, cloning, or pushing</summary>
+    <div class="fold-body">
+      <p>GitHub doesn't recognize your key. Check these in order:</p>
+      <ol>
+        <li data-os="win"><strong>Are you inside Ubuntu?</strong> If your prompt mentions <code>PS C:\</code>, you're in PowerShell — type <code>wsl</code> first. Your key lives in Ubuntu, not Windows.</li>
+        <li><strong>Did the key actually get added?</strong> Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com/settings/keys</a>. If the list is empty, redo Stage 2 steps 2–3. A common miss: copying but never clicking <strong>Add SSH key</strong>.</li>
+        <li><strong>Did you paste the whole key?</strong> It must start with <code>ssh-ed25519</code> and end with your email. Re-copy it:
+          <div class="code-block"><pre><code>cat ~/.ssh/id_ed25519.pub</code></pre><button type="button" class="copy-btn">Copy</button></div>
+          Delete the old key on GitHub and add this one again.</li>
+        <li><strong>Cloned with the wrong URL?</strong> Run <code>git remote -v</code> inside the project. If it shows <code>https://github.com/...</code>, switch it to SSH:
+          <div class="code-block"><pre><code>git remote set-url origin git@github.com:simonteague6/profile-card.git</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
+      </ol>
+      <p>Then test again with <code>ssh -T git@github.com</code>.</p>
+    </div>
+  </details>
+
+  <details class="fold trouble">
+    <summary><span class="ico">😬</span> "I committed to main by accident"</summary>
+    <div class="fold-body">
+      <p>Very fixable, and nothing is lost. You made your commit on <code>main</code> instead of a branch. This recipe moves your work to a proper branch and puts <code>main</code> back the way it was. Run the four commands one at a time:</p>
+      <div class="code-block"><pre><code>git switch -c feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">Creates your branch right where you are — your commit comes with it. Your work is now safe.</p>
+      <div class="code-block"><pre><code>git switch main</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>git reset --hard origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">Rewinds your local <code>main</code> to match GitHub's — as if the accident never happened. (Careful: this throws away any <em>uncommitted</em> edits on main, so save/commit anything you care about first.)</p>
+      <div class="code-block"><pre><code>git switch feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p class="code-note">Back on your branch, with your commit intact. Continue from Stage 7.</p>
+    </div>
+  </details>
+
+  <details class="fold trouble">
+    <summary><span class="ico">⚔️</span> Merge conflict — "CONFLICT" or GitHub says the branch can't be merged</summary>
+    <div class="fold-body">
+      <p>A conflict means you and someone else changed the <em>same lines</em> of the <em>same file</em>, and git needs a human to pick. Since everyone adds their own file in <code>cards/</code>, this is rare here — but if it happens:</p>
+      <ol>
+        <li>On your branch, pull in the latest <code>main</code>:
+          <div class="code-block"><pre><code>git fetch origin &amp;&amp; git merge origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
+        <li>Git tells you which files conflict. Open them in Zed — you'll see markers like this:
+          <div class="code-block"><pre><code class="term-output">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+your version of the line
+=======
+their version of the line
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
+        <li>Edit the file so it reads how it <em>should</em> — keep yours, keep theirs, or blend them — and delete all the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> lines. Zed highlights conflicts and offers one-click "keep" buttons.</li>
+        <li>Then seal it and push:
+          <div class="code-block"><pre><code>git add . &amp;&amp; git commit -m "fix: resolve merge conflict" &amp;&amp; git push</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="fold trouble">
+    <summary><span class="ico">🚫</span> Push rejected</summary>
+    <div class="fold-body">
+      <p>Read the error message — it's one of two situations:</p>
+      <p><strong>"Permission to simonteague6/profile-card.git denied"</strong> or a 403 error → you're not a collaborator on the repo yet. Check <a href="https://github.com/notifications" target="_blank" rel="noopener noreferrer">github.com/notifications</a> and your email for the invite (Stage 3, step 1), accept it, and push again. No invite anywhere? Send Simon your GitHub username.</p>
+      <p><strong>"[rejected] ... failed to push some refs"</strong> with a hint about "fetch first" → GitHub has commits on your branch that your laptop doesn't (this can happen if you edited a file on the GitHub website, or pushed from another machine). Download them, then push again:</p>
+      <div class="code-block"><pre><code>git pull --no-rebase &amp;&amp; git push</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p>If the pull triggers a conflict, the merge-conflict entry above takes over. If the output is scary and nothing works, screenshot it and ask — this one's worth a second pair of eyes.</p>
+    </div>
+  </details>
+
+  <details class="fold trouble" data-os="win">
+    <summary><span class="ico">🐧</span> Commands say "not recognized" or nothing from this page works <span class="os-flag">Windows</span></summary>
+    <div class="fold-body">
+      <p>You're almost certainly in PowerShell, not Ubuntu. Type <code>wsl</code>, press Enter, then <code>cd ~</code>. Every command on this page assumes you're inside Ubuntu. (Zed's built-in terminal is already inside Ubuntu when you open the project via WSL Remote.)</p>
+    </div>
+  </details>
+
+  <details class="fold trouble" data-os="mac">
+    <summary><span class="ico">🔍</span> "zed: command not found" <span class="os-flag">macOS</span></summary>
+    <div class="fold-body">
+      <p>The <code>zed</code> terminal command isn't installed yet (common if you downloaded Zed directly instead of using Homebrew). Open Zed, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <code>install cli</code>, and run it. Works immediately — no restart needed.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ finish ============ -->
+<div class="finish" id="finish">
+  <h2 id="finishTitle">All steps checked = your first merged PR 🎉</h2>
+  <p>When your progress bar hits 100%, you've shipped code to a shared team repo the same way professional engineers do.
+  Next up: the <a href="index.html#next-steps">Setup Guide's Next Steps</a> has hand-picked resources to keep going.</p>
+</div>
+
+</main>
+
+<footer>
+  Rowdy Creators · UTSA — built for brand-new members. Works offline; your progress is saved in this browser only.
+</footer>
+
+<script>
+(function () {
+  var KEY = 'rc-onboarding-v1';
+  var state = { os: 'mac', steps: {}, vars: { name: '', email: '', user: '' } };
+
+  // ---- load / save ----
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var saved = JSON.parse(raw);
+      if (saved && typeof saved === 'object') {
+        if (saved.os === 'mac' || saved.os === 'win') state.os = saved.os;
+        if (saved.steps && typeof saved.steps === 'object') state.steps = saved.steps;
+        if (saved.vars && typeof saved.vars === 'object') {
+          ['name', 'email', 'user'].forEach(function (k) {
+            if (typeof saved.vars[k] === 'string') state.vars[k] = saved.vars[k];
+          });
+        }
+      }
+    }
+  } catch (e) {}
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // ---- OS toggle ----
+  function applyOS() {
+    document.body.setAttribute('data-os', state.os);
+    document.querySelectorAll('[data-os-tab]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-os-tab') === state.os ? 'true' : 'false');
+    });
+    updateProgress();
+  }
+  document.querySelectorAll('[data-os-tab]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.os = btn.getAttribute('data-os-tab');
+      save();
+      applyOS();
+    });
+  });
+
+  // ---- personalization variables ----
+  function sanitize(kind, v) {
+    v = v.replace(/["\\]/g, '').trim();
+    if (kind === 'user') v = v.replace(/[@\s]/g, '');
+    return v;
+  }
+  function applyVars() {
+    document.querySelectorAll('span.var[data-var]').forEach(function (el) {
+      var k = el.getAttribute('data-var');
+      var v = state.vars[k];
+      if (v) {
+        el.textContent = v;
+        el.classList.remove('empty');
+        el.removeAttribute('title');
+      } else {
+        el.textContent = el.getAttribute('data-ph') || '...';
+        el.classList.add('empty');
+        el.setAttribute('title', 'Fill in your info in the box at the top of the page');
+      }
+    });
+  }
+  ['name', 'email', 'user'].forEach(function (k) {
+    var input = document.getElementById('var-' + k);
+    if (!input) return;
+    input.value = state.vars[k];
+    input.addEventListener('input', function () {
+      state.vars[k] = sanitize(k, input.value);
+      save();
+      applyVars();
+    });
+  });
+
+  // ---- step checkboxes ----
+  var checks = Array.prototype.slice.call(document.querySelectorAll('.step-done input[data-step]'));
+  checks.forEach(function (box) {
+    var id = box.getAttribute('data-step');
+    box.checked = !!state.steps[id];
+    reflect(box);
+    box.addEventListener('change', function () {
+      state.steps[id] = box.checked;
+      if (!box.checked) delete state.steps[id];
+      save();
+      reflect(box);
+      updateProgress();
+    });
+  });
+  function reflect(box) {
+    var card = box.closest('.step-card');
+    if (card) card.classList.toggle('checked', box.checked);
+  }
+
+  // ---- progress ----
+  var fill = document.getElementById('progressFill');
+  var label = document.getElementById('progressLabel');
+  function updateProgress() {
+    var total = 0, done = 0;
+    checks.forEach(function (box) {
+      var card = box.closest('.step-card');
+      var os = card ? card.getAttribute('data-os') : null;
+      if (os && os !== state.os) return;
+      total++;
+      if (box.checked) done++;
+    });
+    var pct = total ? Math.round((done / total) * 100) : 0;
+    fill.style.width = pct + '%';
+    if (done === total && total > 0) {
+      label.textContent = '🎉 All ' + total + ' steps done — PR shipped!';
+      label.classList.add('done');
+    } else {
+      label.textContent = done + ' of ' + total + ' steps done';
+      label.classList.remove('done');
+    }
+  }
+
+  // ---- reset ----
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    if (!confirm('Clear all your checkmarks? (Your name/email/username boxes are kept.)')) return;
+    state.steps = {};
+    save();
+    checks.forEach(function (box) { box.checked = false; reflect(box); });
+    updateProgress();
+  });
+
+  // ---- copy buttons ----
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var block = btn.closest('.code-block');
+      var code = block && block.querySelector('code');
+      if (!code) return;
+      var text = code.textContent.trim();
+      function flash(cls, msg) {
+        var orig = btn.textContent;
+        btn.classList.add(cls);
+        btn.textContent = msg;
+        setTimeout(function () { btn.classList.remove(cls); btn.textContent = orig; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { flash('copied', '✓ Copied'); },
+          function () { flash('failed', 'Select & copy manually'); }
+        );
+      } else {
+        flash('failed', 'Select & copy manually');
+      }
+    });
+  });
+
+  applyVars();
+  applyOS();
+})();
+</script>
+</body>
+</html>
