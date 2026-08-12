@@ -235,8 +235,9 @@
 <div class="hero">
   <p class="eyebrow">Rowdy Creators · New Member Onboarding</p>
   <h1>Your First Pull Request</h1>
-  <p class="sub">This page walks you from a fresh laptop to your own profile card merged into the team's
-  <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">profile-card</a> repo.
+  <p class="sub">Got your tools installed through the club's
+  <a href="index.html" target="_blank" rel="noopener noreferrer">Setup Guide</a>? This page walks you to your own
+  profile card merged into the team's <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">profile-card</a> repo.
   No experience needed. Do one step at a time, check it off, and take breaks whenever you want —
   your checkmarks are saved in this browser, so you can close the tab and come back later.</p>
 </div>
@@ -269,10 +270,10 @@
 
 <!-- ============ STAGE 1 ============ -->
 <section class="stage" id="stage-1">
-  <div class="stage-head"><span class="stage-num">STAGE 1</span><h2>Install your tools</h2></div>
+  <div class="stage-head"><span class="stage-num">STAGE 1</span><h2>Get ready</h2></div>
   <div class="stage-intro">
-    <p>You only do this stage once, ever. It gets you a GitHub account, <code>git</code> (the tool that tracks changes to code), and the Zed editor.</p>
-    <p>This is the short version. The club's full <a href="index.html">Setup Guide</a> covers the same steps with screenshots, plus optional shell niceties like Oh&nbsp;My&nbsp;Zsh — if anything here feels too fast, use that page for this stage and come back.</p>
+    <p>This page assumes you've already worked through the club's <a href="index.html">Setup Guide</a> — so <code>git</code> and the Zed editor are installed, and on Windows, WSL with Ubuntu is set up and ready. You shouldn't need to install anything new here.</p>
+    <p>This stage just gets your identity ready for GitHub.</p>
   </div>
 
   <div class="step-card">
@@ -291,136 +292,16 @@
     </div>
   </div>
 
-  <!-- ---- macOS tool steps ---- -->
-  <div class="step-card" data-os="mac">
+  <!-- ---- the full Setup Guide already installed the tools: nothing to install here ---- -->
+  <div class="step-card">
     <div class="step-head">
       <span class="step-num"></span>
-      <span class="step-title">Open Terminal and install the command line tools <span class="os-flag">macOS</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-mac-clt"> Done</label>
+      <span class="step-title">Your tools are already set up</span>
+      <label class="step-done"><input type="checkbox" data-step="s1-tools"> Done</label>
     </div>
     <div class="step-body">
-      <p>Press <kbd>Cmd</kbd>+<kbd>Space</kbd>, type <code>Terminal</code>, and hit Enter. That black window is where you'll paste commands.</p>
-      <p>Now paste this and press Enter (click a command's <strong>Copy</strong> button, then <kbd>Cmd</kbd>+<kbd>V</kbd> in Terminal):</p>
-      <div class="code-block"><pre><code>xcode-select --install</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>Click <strong>Install</strong> in the popup and wait for it to finish. This gives you <code>git</code> and other developer tools macOS doesn't ship with. If it says the tools are already installed, that's fine — check this step off.</p>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="mac">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Install Zed <span class="os-flag">macOS</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-mac-zed"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>Zed is the code editor the club uses. Go to <a href="https://zed.dev/download" target="_blank" rel="noopener noreferrer">zed.dev/download</a>, download the <code>.dmg</code>, open it, and drag Zed into Applications.</p>
-      <details class="fold">
-        <summary><span class="ico">💡</span> Already use Homebrew? Install it that way instead</summary>
-        <div class="fold-body">
-          <div class="code-block"><pre><code>brew install --cask zed</code></pre><button type="button" class="copy-btn">Copy</button></div>
-          <p>The full <a href="index.html">Setup Guide</a> recommends this path because <code>brew upgrade</code> keeps Zed updated. If you don't know what Homebrew is, the direct download above is perfectly fine.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="mac">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Open Zed and turn on its terminal command <span class="os-flag">macOS</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-mac-open"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>Open Zed from Applications. Then press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <code>install cli</code>, and press Enter. This lets you type <code>zed</code> in the terminal to open projects — you'll need it in Stage 3.</p>
-      <p>Zed also has a terminal built in: press <kbd>Ctrl</kbd>+<kbd>`</kbd> (the backtick key, left of <kbd>1</kbd>). From now on, any command on this page can be pasted there.</p>
-    </div>
-  </div>
-
-  <!-- ---- Windows tool steps ---- -->
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Check virtualization is on <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-virt"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>On Windows you'll run your developer tools inside Linux, using something called WSL. That needs one hardware setting turned on. It's safe and won't void any warranty.</p>
-      <p>Open Task Manager (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>) → <strong>Performance</strong> tab → <strong>CPU</strong>. Look for <strong>"Virtualization: Enabled"</strong> near the bottom right.</p>
-      <p>If it says <em>Disabled</em>, it needs to be flipped on in BIOS — the <a href="index.html#windows">Setup Guide's "Before You Start" section</a> has the BIOS key for every laptop brand. Also make sure Windows is up to date (Settings → Windows Update).</p>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Install WSL <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-wsl"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>Press the Start key, type <code>powershell</code>, and click <strong>Run as Administrator</strong> on the right. Then paste this and press Enter:</p>
-      <div class="code-block"><pre><code>wsl --install</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>When it finishes, <strong>restart your computer</strong>. (Needs Windows 10 version 2004+ or Windows 11.)</p>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Create your Ubuntu username and password <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-ubuntu"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>After the restart, Ubuntu opens on its own (or find <strong>Ubuntu</strong> in the Start menu). It asks you to create a username and password. Pick anything, and remember the password — you'll type it whenever a command starts with <code>sudo</code>.</p>
-      <div class="callout callout-warn"><span class="ico">⌨️</span>
-        <div><span class="label">The password won't show as you type</span>
-        No dots, no stars, nothing. The screen is not frozen — this is normal terminal behavior. Just type it and press Enter.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Update Ubuntu and install git <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-git"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>In the Ubuntu window, run these two commands, one at a time. The first can take a few minutes — that's normal.</p>
-      <div class="code-block"><pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <div class="code-block"><pre><code>sudo apt install git zsh -y</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>(<code>zsh</code> is a nicer shell the <a href="index.html#windows">Setup Guide</a> sets up fully — optional for today, but installing it now saves time later.)</p>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Install Zed — the Windows app <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-zed"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>Zed is the code editor the club uses. Go to <a href="https://zed.dev/download" target="_blank" rel="noopener noreferrer">zed.dev/download</a>, download the <strong>Windows</strong> installer, and run it.</p>
-      <div class="callout callout-warn"><span class="ico">⚠️</span>
-        <div><span class="label">This is the Windows app</span>
-        Don't try to install Zed inside Ubuntu. You install it on Windows once, then connect it to Ubuntu in the next step.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-card" data-os="win">
-    <div class="step-head">
-      <span class="step-num"></span>
-      <span class="step-title">Connect Zed to Ubuntu (WSL Remote) <span class="os-flag">Windows</span></span>
-      <label class="step-done"><input type="checkbox" data-step="s1-win-remote"> Done</label>
-    </div>
-    <div class="step-body">
-      <p>Open Zed. When opening a project, choose the <strong>WSL Remote</strong> option in the project picker — that connects Zed to your Ubuntu files. The <a href="index.html#windows">Setup Guide</a> has a screenshot of exactly where it is.</p>
-      <div class="callout callout-danger"><span class="ico">🛑</span>
-        <div><span class="label">Two rules that prevent 90% of Windows problems</span>
-        <strong>1.</strong> Every time you open a terminal, type <code>wsl</code> first, then <code>cd ~</code>. Otherwise you're in PowerShell and the commands on this page won't work.<br>
-        <strong>2.</strong> Keep your projects in Ubuntu's home folder (<code>~</code>), never in paths that start with <code>/mnt/c/</code>. Always open projects in Zed through the WSL Remote.</div>
-      </div>
-      <p>Zed also has a terminal built in: press <kbd>Ctrl</kbd>+<kbd>`</kbd> (the backtick key, left of <kbd>1</kbd>). When you're connected via WSL Remote, that terminal is already inside Ubuntu — no <code>wsl</code> needed there.</p>
+      <p>The club&rsquo;s <a href="index.html">Setup Guide</a> already installed <code>git</code>, Zsh, the Zed editor, and (on Windows) WSL with Ubuntu &mdash; nothing to reinstall here.</p>
+      <p>When the rest of this page says &ldquo;in your terminal&rdquo;,<span data-os="mac"> just open Terminal (press <kbd>Cmd</kbd>+<kbd>Space</kbd>, type <code>Terminal</code>).</span><span data-os="win"> get into Ubuntu first: press the Start key, type <code>terminal</code>, then run <code>wsl</code> and <code>cd ~</code>.</span></p>
     </div>
   </div>
 
