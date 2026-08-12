@@ -447,15 +447,15 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>cd ~/projects/profile-card &amp;&amp; zed .</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>You should see <code>index.html</code>, <code>style.css</code>, and <code>README.md</code> in Zed's file tree on the left. That's the existing example card.</p>
+      <p>You should see <code>index.html</code>, <code>style.css</code>, and <code>README.md</code> in Zed's file tree (the file panel on the side of the window). That's the existing example card.</p>
       <p data-os="win" class="code-note">If <code>zed</code> isn't found inside Ubuntu, open Zed on Windows instead, use <strong>Open Folder</strong> through the <strong>WSL Remote</strong>, and pick <code>~/projects/profile-card</code>.</p>
       <p data-os="mac" class="code-note">If it says <code>zed: command not found</code>, open Zed, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, run <code>install cli</code>, and try again.</p>
       <details class="fold">
         <summary><span class="ico">🔍</span> Curious? See the repo's history</summary>
         <div class="fold-body">
-          <p>This repo was built commit by commit, with two branches that split off and merged back. Run this to see the shape of it:</p>
-          <div class="code-block"><pre><code>git log --oneline --graph --all</code></pre><button type="button" class="copy-btn">Copy</button></div>
-          <p>You're about to add your own branch to that picture. (Press <kbd>q</kbd> to exit the log view if it takes over the terminal.)</p>
+          <p>This repo was built commit by commit, with two branches that split off and merged back. Zed can draw that shape for you.</p>
+          <p>Open the command palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows), type <code>git graph: open</code>, and press Enter. A panel shows the whole history as an interactive graph.</p>
+          <p>You're about to add your own branch to that picture.</p>
         </div>
       </details>
     </div>
@@ -489,8 +489,12 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s4-branch"> Done</label>
     </div>
     <div class="step-body">
+      <p>Two things are happening: create the branch, then move onto it. The one-command version does both:</p>
       <div class="code-block"><pre><code>git switch -c feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p><code>switch -c</code> means "create this branch and move me onto it." The <code>feature/</code> prefix is the naming style this repo already uses. Zed's top bar now shows your branch name instead of <code>main</code>.</p>
+      <p>Under the hood, that's the same as these two commands run one after another:</p>
+      <div class="code-block"><pre><code>git branch feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <div class="code-block"><pre><code>git switch feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
+      <p><code>git branch</code> creates the branch; <code>git switch</code> moves you onto it. <code>switch -c</code> is the shortcut for both. The <code>feature/</code> prefix is the naming style this repo already uses. Zed's top bar now shows your branch name instead of <code>main</code>.</p>
     </div>
   </div>
 </section>
