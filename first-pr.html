@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<title>Your First Pull Request — Rowdy Creators</title>
+<title>Your First Pull Request · Rowdy Creators</title>
 <meta name="description" content="A step-by-step checklist that takes a brand-new Rowdy Creators member from zero to their first merged pull request.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23080808'/%3E%3Crect%20x='3'%20y='3'%20width='26'%20height='26'%20rx='5'%20fill='none'%20stroke='%23079CA6'%20stroke-width='2'/%3E%3Cpath%20d='M8%2011l5%204-5%204'%20fill='none'%20stroke='%23079CA6'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M15%2020h7'%20stroke='%23079CA6'%20stroke-width='2.5'%20stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
@@ -238,8 +238,8 @@
   <p class="sub">Got your tools installed through the club's
   <a href="index.html" target="_blank" rel="noopener noreferrer">Setup Guide</a>? This page walks you to your own
   profile card merged into the team's <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">profile-card</a> repo.
-  No experience needed. Do one step at a time, check it off, and take breaks whenever you want —
-  your checkmarks are saved in this browser, so you can close the tab and come back later.</p>
+  No experience needed. Do one step at a time and check it off. Your progress is saved in this
+  browser, so you can close the tab and come back later.</p>
 </div>
 
 <div class="callout callout-info" style="margin-top:1.6rem">
@@ -250,7 +250,7 @@
 
 <!-- ============ identity inputs ============ -->
 <div class="idcard">
-  <h3>Fill these in once — the commands below will personalize themselves</h3>
+  <h3>Fill these in once, and the commands below personalize themselves</h3>
   <p>Anything you leave blank shows as a <span class="var empty">yellow placeholder</span> in the commands. Come back and fill it in after you create your GitHub account in Stage 1.</p>
   <div class="idgrid">
     <div>
@@ -272,7 +272,7 @@
 <section class="stage" id="stage-1">
   <div class="stage-head"><span class="stage-num">STAGE 1</span><h2>Get ready</h2></div>
   <div class="stage-intro">
-    <p>This page assumes you've already worked through the club's <a href="index.html">Setup Guide</a> — so <code>git</code> and the Zed editor are installed, and on Windows, WSL with Ubuntu is set up and ready. You shouldn't need to install anything new here.</p>
+    <p>This page assumes you've already worked through the club's <a href="index.html">Setup Guide</a>, so <code>git</code> and the Zed editor are installed, and on Windows, WSL with Ubuntu is set up and ready. You won't need to install anything new here.</p>
     <p>This stage just gets your identity ready for GitHub.</p>
   </div>
 
@@ -285,7 +285,7 @@
     <div class="step-body">
       <p>GitHub is the website where the club stores its code. Go to <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">github.com/signup</a> and make a free account.</p>
       <ul>
-        <li>Use an email you'll still have after graduation (a personal one, not only your UTSA email — you can add both later).</li>
+        <li>Use an email you'll still have after graduation (a personal one, not just your UTSA email; you can add both later).</li>
         <li>Pick a username you'd be OK putting on a resume. You'll be typing it a lot.</li>
       </ul>
       <p>Then scroll up and type your username, name, and email into the boxes at the top of this page.</p>
@@ -313,7 +313,7 @@
       <label class="step-done"><input type="checkbox" data-step="s1-config"> Done</label>
     </div>
     <div class="step-body">
-      <p>Every change you save with git gets stamped with a name and email. Set them once and git remembers forever. Run these in your terminal<span data-os="win"> (inside Ubuntu — type <code>wsl</code> first if you opened Windows Terminal)</span>:</p>
+      <p>Every change you save with git gets stamped with a name and email. Set them once and git remembers forever. Run these in your terminal<span data-os="win"> (inside Ubuntu; type <code>wsl</code> first if you opened Windows Terminal)</span>:</p>
       <div class="code-block"><pre><code>git config --global user.name "<span class="var" data-var="name" data-ph="YOUR NAME">YOUR NAME</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="code-block"><pre><code>git config --global user.email "<span class="var" data-var="email" data-ph="you@example.com">you@example.com</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p class="code-note">Use the same email as your GitHub account. If you filled in the boxes at the top of this page, these commands already have your info in them.</p>
@@ -325,7 +325,7 @@
 <section class="stage" id="stage-2">
   <div class="stage-head"><span class="stage-num">STAGE 2</span><h2>Set up your GitHub SSH key</h2></div>
   <div class="stage-intro">
-    <p>An SSH key is like a house key for GitHub: your computer proves it's you without typing a password every time. You make a key pair — a private half that never leaves your laptop, and a public half you give to GitHub.</p>
+    <p>An SSH key lets your computer prove it's you to GitHub without you typing a password. You make a key pair: one private half that stays on your laptop, and one public half you give to GitHub.</p>
   </div>
 
   <div class="step-card">
@@ -337,7 +337,7 @@
     <div class="step-body">
       <p>In your terminal<span data-os="win"> (inside Ubuntu)</span>, run:</p>
       <div class="code-block"><pre><code>ssh-keygen -t ed25519 -C "<span class="var" data-var="email" data-ph="you@example.com">you@example.com</span>"</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>It asks three questions. <strong>Press Enter for all three</strong> — that accepts the normal file location and skips the extra passphrase (fine for a laptop only you use). You'll see a box of random characters called "randomart"; that means it worked.</p>
+      <p>It asks three questions. <strong>Press Enter for all three</strong> to accept the default file location and skip a passphrase (fine for a laptop only you use). You'll see a box of random characters called "randomart"; that means it worked.</p>
     </div>
   </div>
 
@@ -348,7 +348,7 @@
       <label class="step-done"><input type="checkbox" data-step="s2-copy"> Done</label>
     </div>
     <div class="step-body">
-      <p>This command puts your <em>public</em> key on the clipboard (it's safe to share — the private half stays in place):</p>
+      <p>This command puts your <em>public</em> key on the clipboard (safe to share; the private half stays in place):</p>
       <div class="os-tabs">
         <div class="os-tabbar" role="group" aria-label="Choose your operating system">
           <button type="button" data-os-tab="mac">macOS</button>
@@ -362,7 +362,7 @@
           <p class="code-note">If <code>clip.exe</code> complains, just run <code>cat ~/.ssh/id_ed25519.pub</code>, then select the whole output line with your mouse and copy it.</p>
         </div>
       </div>
-      <p>Nothing appears to happen when you run it — that's normal. The key is on your clipboard now.</p>
+      <p>Nothing appears to happen when you run it, and that's normal. The key is on your clipboard now.</p>
     </div>
   </div>
 
@@ -391,7 +391,7 @@
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>ssh -T git@github.com</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>The first time, it asks if you're sure you want to connect — type <code>yes</code> and press Enter. Then you should see:</p>
+      <p>The first time, it asks if you're sure you want to connect; type <code>yes</code> and press Enter. Then you should see:</p>
       <div class="code-block"><pre><code class="term-output">Hi <span class="var" data-var="user" data-ph="your-username">your-username</span>! You've successfully authenticated, but GitHub
 does not provide shell access.</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="callout callout-ok"><span class="ico">✅</span>
@@ -406,7 +406,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="stage-3">
   <div class="stage-head"><span class="stage-num">STAGE 3</span><h2>Get the team repo onto your laptop</h2></div>
   <div class="stage-intro">
-    <p>"Cloning" downloads a copy of the team's repository — including its whole history — onto your machine. You'll clone <code>profile-card</code>, a small practice repo where every member adds their own profile page.</p>
+    <p>Cloning downloads a copy of the team's repository, including its whole history. You'll clone <code>profile-card</code>, where every member adds their own profile page.</p>
   </div>
 
   <div class="step-card">
@@ -416,8 +416,8 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s3-invite"> Done</label>
     </div>
     <div class="step-body">
-      <p>Simon adds each member as a collaborator on <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">simonteague6/profile-card</a>. GitHub emails you an invitation — check your inbox (and spam), or look at <a href="https://github.com/notifications" target="_blank" rel="noopener noreferrer">github.com/notifications</a>, and click <strong>Accept</strong>.</p>
-      <p>No invite? Message Simon with your GitHub username. You can keep going — you'll need the invite accepted before Stage 7 (push).</p>
+      <p>Simon adds each member as a collaborator on <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">simonteague6/profile-card</a>. GitHub emails you an invitation; check your inbox (and spam), or look at <a href="https://github.com/notifications" target="_blank" rel="noopener noreferrer">github.com/notifications</a>, and click <strong>Accept</strong>.</p>
+      <p>No invite? Message Simon with your GitHub username. You can keep going; you'll need the invite accepted before Stage 7 (push).</p>
     </div>
   </div>
 
@@ -428,13 +428,13 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s3-clone"> Done</label>
     </div>
     <div class="step-body">
-      <p>In your terminal<span data-os="win"> (inside Ubuntu — remember: type <code>wsl</code> then <code>cd ~</code> if you opened Windows Terminal)</span>, run these one at a time:</p>
+      <p>In your terminal<span data-os="win"> (inside Ubuntu; type <code>wsl</code> then <code>cd ~</code> if you opened Windows Terminal)</span>, run these one at a time:</p>
       <div class="code-block"><pre><code>mkdir -p ~/projects</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="code-block"><pre><code>cd ~/projects &amp;&amp; git clone git@github.com:simonteague6/profile-card.git</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p class="code-note">The first command makes a <code>projects</code> folder in your home directory (it's fine if it already exists). The second downloads the repo into it.</p>
       <div class="callout callout-warn" data-os="win"><span class="ico">⚠️</span>
         <div><span class="label">Windows: always clone in the terminal</span>
-        Don't use Zed's command palette to clone — it opens a Windows file picker that puts the project on the wrong filesystem. The terminal commands above put it in the right place.</div>
+        Don't clone with Zed's command palette; it opens a Windows file picker that puts the project on the wrong filesystem. Use the terminal commands above.</div>
       </div>
     </div>
   </div>
@@ -466,7 +466,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="stage-4">
   <div class="stage-head"><span class="stage-num">STAGE 4</span><h2>Make your own branch</h2></div>
   <div class="stage-intro">
-    <p><code>main</code> is the team's shared copy — you never work directly on it. A branch is your own private workspace: you can experiment freely, and nothing touches <code>main</code> until the team approves your pull request.</p>
+    <p><code>main</code> is the team's shared copy, so you never work on it directly. A branch is your own workspace: nothing touches <code>main</code> until the team approves your pull request.</p>
   </div>
 
   <div class="step-card">
@@ -476,7 +476,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s4-status"> Done</label>
     </div>
     <div class="step-body">
-      <p>From now on, run everything in Zed's built-in terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>) — it's already inside the project folder.</p>
+      <p>From now on, run everything in Zed's built-in terminal (<kbd>Ctrl</kbd>+<kbd>`</kbd>); it's already inside the project folder.</p>
       <div class="code-block"><pre><code>git status</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p>You want to see <code>On branch main</code> and <code>nothing to commit, working tree clean</code>. That means you're starting from a clean copy of the team's code.</p>
     </div>
@@ -499,7 +499,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="stage-5">
   <div class="stage-head"><span class="stage-num">STAGE 5</span><h2>Build your profile card</h2></div>
   <div class="stage-intro">
-    <p>Your first contribution: one HTML file, your own page, in a <code>cards</code> folder. Everyone gets their own file, named after their GitHub username, so nobody steps on anyone else's work.</p>
+    <p>Your first contribution is one HTML file: your own page in a <code>cards</code> folder, named after your GitHub username so nobody edits the same file.</p>
   </div>
 
   <div class="step-card">
@@ -510,7 +510,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>mkdir -p cards</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p class="code-note">If someone's card was merged before yours, the folder already exists — <code>-p</code> makes that a non-issue either way.</p>
+      <p class="code-note">If someone's card was merged before yours, the folder already exists; <code>-p</code> makes that a non-issue.</p>
     </div>
   </div>
 
@@ -522,7 +522,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>touch cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>Now click the new file in Zed's file tree (inside the <code>cards</code> folder) to open it. It's empty — that's next.</p>
+      <p>Now click your new file in Zed's file tree (inside <code>cards</code>) to open it. It's empty; you'll fill it next.</p>
     </div>
   </div>
 
@@ -570,10 +570,10 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
         </div>
         <div class="os-pane" data-os="win">
           <div class="code-block"><pre><code>explorer.exe cards</code></pre><button type="button" class="copy-btn">Copy</button></div>
-          <p class="code-note">That opens the folder in Windows File Explorer — double-click your file to open it in your browser.</p>
+          <p class="code-note">That opens the folder in File Explorer; double-click your file to open it in your browser.</p>
         </div>
       </div>
-      <p>You should see a small white card with your name on a gray background. If it looks unstyled (plain black text on white), check the stylesheet line says <code>../style.css</code> — with the two dots.</p>
+      <p>You should see a small white card with your name on a gray background. If it looks unstyled (plain black text on white), check that the stylesheet line says <code>../style.css</code>, with the two dots.</p>
     </div>
   </div>
 </section>
@@ -582,7 +582,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="stage-6">
   <div class="stage-head"><span class="stage-num">STAGE 6</span><h2>Commit your work</h2></div>
   <div class="stage-intro">
-    <p>A commit is a saved snapshot with a message — like a checkpoint in a game. Right now your new file only exists on your laptop and git isn't tracking it yet. Committing happens in two moves: stage the file (put it in the box), then commit (seal the box with a label).</p>
+    <p>A commit is a saved snapshot with a message, like a checkpoint in a game. Git isn't tracking your new file yet. Committing is two moves: stage the file, then commit it.</p>
   </div>
 
   <div class="step-card">
@@ -593,7 +593,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>git status</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>Your file shows up in red under "Untracked files." Red just means "git isn't tracking this yet" — nothing is wrong.</p>
+      <p>Your file shows up in red under "Untracked files." Red just means git isn't tracking it yet; nothing is wrong.</p>
     </div>
   </div>
 
@@ -605,7 +605,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>git add cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>Run <code>git status</code> again if you're curious — the file turned green, meaning it's staged and ready to be committed.</p>
+      <p>Run <code>git status</code> again if you want to check; the file turns green, meaning it's staged and ready to commit.</p>
     </div>
   </div>
 
@@ -617,7 +617,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <div class="code-block"><pre><code>git commit -m "feat: add <span class="var" data-var="user" data-ph="your-username">your-username</span>'s profile card"</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>The <code>-m</code> part is the message — a short note about what this snapshot contains. The <code>feat:</code> prefix means "this adds a feature"; it's the style this repo's history already uses.</p>
+      <p>The <code>-m</code> part is the message, a short note about what this snapshot contains. The <code>feat:</code> prefix means "this adds a feature," matching this repo's existing history.</p>
     </div>
   </div>
 </section>
@@ -638,7 +638,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     <div class="step-body">
       <div class="code-block"><pre><code>git push -u origin feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p><code>origin</code> is git's name for the GitHub copy of the repo, and <code>-u</code> links your local branch to it (you only need <code>-u</code> this first time).</p>
-      <p>In the output, GitHub prints a link that says <strong>"Create a pull request"</strong> — that's your cue for the next stage. If the push is rejected instead, open the troubleshooting section at the bottom.</p>
+      <p>In the output, GitHub prints a <strong>"Create a pull request"</strong> link; that's your cue for the next stage. If the push is rejected instead, see the troubleshooting section at the bottom.</p>
     </div>
   </div>
 </section>
@@ -647,7 +647,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="stage-8">
   <div class="stage-head"><span class="stage-num">STAGE 8</span><h2>Open your pull request</h2></div>
   <div class="stage-intro">
-    <p>A pull request (PR) is how you ask the team to pull your branch into <code>main</code>. It's a conversation, not a submission for a grade — someone looks at your change, maybe suggests tweaks, then merges it.</p>
+    <p>A pull request (PR) is how you ask the team to pull your branch into <code>main</code>. Someone reviews your change, may ask for tweaks, then merges it.</p>
   </div>
 
   <div class="step-card">
@@ -657,7 +657,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s8-open"> Done</label>
     </div>
     <div class="step-body">
-      <p>Go to <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">github.com/simonteague6/profile-card</a>. There's a yellow banner with your branch name and a <strong>"Compare &amp; pull request"</strong> button — click it.</p>
+      <p>Go to <a href="https://github.com/simonteague6/profile-card" target="_blank" rel="noopener noreferrer">github.com/simonteague6/profile-card</a>. There's a yellow banner with your branch name and a <strong>"Compare &amp; pull request"</strong> button; click it.</p>
       <p>No banner? Click the <strong>Pull requests</strong> tab → <strong>New pull request</strong>. Set <strong>base</strong> to <code>main</code> and <strong>compare</strong> to your branch, then <strong>Create pull request</strong>.</p>
     </div>
   </div>
@@ -670,7 +670,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     </div>
     <div class="step-body">
       <p>Title: <code>Add <span class="var" data-var="name" data-ph="YOUR NAME">YOUR NAME</span>'s profile card</code></p>
-      <p>Description: a sentence or two is plenty. What you added, and anything you're unsure about. For example: <em>"Adds my profile card in cards/. First PR — let me know if I got the file location right!"</em></p>
+      <p>Description: a sentence or two is plenty. What you added, and anything you're unsure about. For example: <em>"Adds my profile card in cards/. Let me know if I got the file location right."</em></p>
     </div>
   </div>
 
@@ -681,16 +681,16 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s8-create"> Done</label>
     </div>
     <div class="step-body">
-      <p>That's it — your work is officially up for review. Simon gets a notification automatically. If nothing happens in a day or two, it's completely normal to ping him: <em>"Hey, my PR is up, can you take a look?"</em></p>
+      <p>That's it; your work is up for review. Simon gets a notification automatically. If nothing happens in a day or two, it's fine to ping him: <em>"Hey, my PR is up, can you take a look?"</em></p>
     </div>
   </div>
 </section>
 
 <!-- ============ STAGE 9 ============ -->
 <section class="stage" id="stage-9">
-  <div class="stage-head"><span class="stage-num">STAGE 9</span><h2>Respond to review — then celebrate</h2></div>
+  <div class="stage-head"><span class="stage-num">STAGE 9</span><h2>Respond to review</h2></div>
   <div class="stage-intro">
-    <p>A reviewer will read your change and either approve it or leave comments asking for tweaks. Everyone — including people who've coded for decades — gets change requests. It means someone read your work carefully.</p>
+    <p>A reviewer reads your change and either approves it or leaves comments. Getting change requests is normal; it means someone read your work carefully.</p>
   </div>
 
   <div class="step-card">
@@ -700,7 +700,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s9-read"> Done</label>
     </div>
     <div class="step-body">
-      <p>GitHub emails you when someone comments. On your PR page, the <strong>Files changed</strong> tab shows comments pinned to specific lines. If a comment is unclear, reply and ask — that's what the thread is for.</p>
+      <p>GitHub emails you when someone comments. On your PR page, the <strong>Files changed</strong> tab shows comments pinned to specific lines. If a comment is unclear, reply and ask; that's what the thread is for.</p>
       <p>If the review is just an approval with no changes requested, check this off and skip to the last step. 🎉</p>
     </div>
   </div>
@@ -712,11 +712,11 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <label class="step-done"><input type="checkbox" data-step="s9-fix"> Done</label>
     </div>
     <div class="step-body">
-      <p>Back in Zed, on the <strong>same branch</strong> (check the top bar — no new branch needed), edit your file, save, then:</p>
+      <p>Back in Zed, on the <strong>same branch</strong> (check the top bar; no new branch needed), edit your file, save, then:</p>
       <div class="code-block"><pre><code>git add cards/<span class="var" data-var="user" data-ph="your-username">your-username</span>.html</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="code-block"><pre><code>git commit -m "fix: address review feedback"</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="code-block"><pre><code>git push</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p class="code-note">No <code>-u</code> or branch name needed this time — git remembers from Stage 7. The PR updates by itself the moment you push.</p>
+      <p class="code-note">No <code>-u</code> or branch name this time; git remembers from Stage 7. The PR updates the moment you push.</p>
     </div>
   </div>
 
@@ -731,7 +731,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <div class="code-block"><pre><code>git switch main &amp;&amp; git pull</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p>Your branch did its job and can be deleted (this only removes the local copy; the history is safe in <code>main</code>):</p>
       <div class="code-block"><pre><code>git branch -d feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>You just did the full loop — branch, build, commit, push, PR, review, merge. That is <em>exactly</em> how real software teams work, and now you've done it.</p>
+      <p>That's the full loop: branch, build, commit, push, PR, review, merge. You've just done what professional teams do on every feature.</p>
     </div>
   </div>
 </section>
@@ -740,7 +740,7 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
 <section class="stage" id="troubleshooting">
   <div class="stage-head"><span class="stage-num">HELP</span><h2>When things go wrong</h2></div>
   <div class="stage-intro">
-    <p>Everything in here has happened to every developer ever. Find your error, follow the fix, and if you're still stuck after 20 minutes, ask in the club chat or grab Simon at a meeting — asking early is the pro move, not the embarrassing one.</p>
+    <p>These are all common errors. Find yours, follow the fix, and if you're still stuck after 20 minutes, ask in the club chat or grab Simon at a meeting.</p>
   </div>
 
   <details class="fold trouble">
@@ -748,8 +748,8 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     <div class="fold-body">
       <p>GitHub doesn't recognize your key. Check these in order:</p>
       <ol>
-        <li data-os="win"><strong>Are you inside Ubuntu?</strong> If your prompt mentions <code>PS C:\</code>, you're in PowerShell — type <code>wsl</code> first. Your key lives in Ubuntu, not Windows.</li>
-        <li><strong>Did the key actually get added?</strong> Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com/settings/keys</a>. If the list is empty, redo Stage 2 steps 2–3. A common miss: copying but never clicking <strong>Add SSH key</strong>.</li>
+        <li data-os="win"><strong>Are you inside Ubuntu?</strong> If your prompt mentions <code>PS C:\</code>, you're in PowerShell; type <code>wsl</code> first. Your key lives in Ubuntu, not Windows.</li>
+        <li><strong>Did the key actually get added?</strong> Open <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">github.com/settings/keys</a>. If the list is empty, redo Stage 2 steps 2 and 3. A common miss: copying but never clicking <strong>Add SSH key</strong>.</li>
         <li><strong>Did you paste the whole key?</strong> It must start with <code>ssh-ed25519</code> and end with your email. Re-copy it:
           <div class="code-block"><pre><code>cat ~/.ssh/id_ed25519.pub</code></pre><button type="button" class="copy-btn">Copy</button></div>
           Delete the old key on GitHub and add this one again.</li>
@@ -765,29 +765,29 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
     <div class="fold-body">
       <p>Very fixable, and nothing is lost. You made your commit on <code>main</code> instead of a branch. This recipe moves your work to a proper branch and puts <code>main</code> back the way it was. Run the four commands one at a time:</p>
       <div class="code-block"><pre><code>git switch -c feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p class="code-note">Creates your branch right where you are — your commit comes with it. Your work is now safe.</p>
+      <p class="code-note">Creates your branch right where you are; your commit comes with it. Your work is now safe.</p>
       <div class="code-block"><pre><code>git switch main</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <div class="code-block"><pre><code>git reset --hard origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p class="code-note">Rewinds your local <code>main</code> to match GitHub's — as if the accident never happened. (Careful: this throws away any <em>uncommitted</em> edits on main, so save/commit anything you care about first.)</p>
+      <p class="code-note">Rewinds your local <code>main</code> to match GitHub's, as if the accident never happened. (Careful: this discards any <em>uncommitted</em> edits on main, so commit anything you care about first.)</p>
       <div class="code-block"><pre><code>git switch feature/add-<span class="var" data-var="user" data-ph="your-username">your-username</span>-card</code></pre><button type="button" class="copy-btn">Copy</button></div>
       <p class="code-note">Back on your branch, with your commit intact. Continue from Stage 7.</p>
     </div>
   </details>
 
   <details class="fold trouble">
-    <summary><span class="ico">⚔️</span> Merge conflict — "CONFLICT" or GitHub says the branch can't be merged</summary>
+    <summary><span class="ico">⚔️</span> Merge conflict: "CONFLICT" or GitHub says the branch can't be merged</summary>
     <div class="fold-body">
-      <p>A conflict means you and someone else changed the <em>same lines</em> of the <em>same file</em>, and git needs a human to pick. Since everyone adds their own file in <code>cards/</code>, this is rare here — but if it happens:</p>
+      <p>A conflict means you and someone else changed the <em>same lines</em> of the <em>same file</em>, and git needs a human to decide. It's rare here, since everyone adds their own file in <code>cards/</code>, but if it happens:</p>
       <ol>
         <li>On your branch, pull in the latest <code>main</code>:
           <div class="code-block"><pre><code>git fetch origin &amp;&amp; git merge origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
-        <li>Git tells you which files conflict. Open them in Zed — you'll see markers like this:
+        <li>Git tells you which files conflict. Open them in Zed; you'll see markers like this:
           <div class="code-block"><pre><code class="term-output">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 your version of the line
 =======
 their version of the line
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
-        <li>Edit the file so it reads how it <em>should</em> — keep yours, keep theirs, or blend them — and delete all the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> lines. Zed highlights conflicts and offers one-click "keep" buttons.</li>
+        <li>Edit the file so it reads how it <em>should</em>: keep yours, keep theirs, or blend them. Then delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> lines. Zed highlights conflicts and offers one-click "keep" buttons.</li>
         <li>Then seal it and push:
           <div class="code-block"><pre><code>git add . &amp;&amp; git commit -m "fix: resolve merge conflict" &amp;&amp; git push</code></pre><button type="button" class="copy-btn">Copy</button></div></li>
       </ol>
@@ -797,11 +797,11 @@ their version of the line
   <details class="fold trouble">
     <summary><span class="ico">🚫</span> Push rejected</summary>
     <div class="fold-body">
-      <p>Read the error message — it's one of two situations:</p>
+      <p>Read the error message; it's one of two situations:</p>
       <p><strong>"Permission to simonteague6/profile-card.git denied"</strong> or a 403 error → you're not a collaborator on the repo yet. Check <a href="https://github.com/notifications" target="_blank" rel="noopener noreferrer">github.com/notifications</a> and your email for the invite (Stage 3, step 1), accept it, and push again. No invite anywhere? Send Simon your GitHub username.</p>
       <p><strong>"[rejected] ... failed to push some refs"</strong> with a hint about "fetch first" → GitHub has commits on your branch that your laptop doesn't (this can happen if you edited a file on the GitHub website, or pushed from another machine). Download them, then push again:</p>
       <div class="code-block"><pre><code>git pull --no-rebase &amp;&amp; git push</code></pre><button type="button" class="copy-btn">Copy</button></div>
-      <p>If the pull triggers a conflict, the merge-conflict entry above takes over. If the output is scary and nothing works, screenshot it and ask — this one's worth a second pair of eyes.</p>
+      <p>If the pull triggers a conflict, the merge-conflict entry above takes over. If nothing works, screenshot the output and ask; this one's worth a second pair of eyes.</p>
     </div>
   </details>
 
@@ -815,7 +815,7 @@ their version of the line
   <details class="fold trouble" data-os="mac">
     <summary><span class="ico">🔍</span> "zed: command not found" <span class="os-flag">macOS</span></summary>
     <div class="fold-body">
-      <p>The <code>zed</code> terminal command isn't installed yet (common if you downloaded Zed directly instead of using Homebrew). Open Zed, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <code>install cli</code>, and run it. Works immediately — no restart needed.</p>
+      <p>The <code>zed</code> terminal command isn't installed yet (common if you downloaded Zed directly instead of using Homebrew). Open Zed, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <code>install cli</code>, and run it. Works immediately; no restart needed.</p>
     </div>
   </details>
 </section>
@@ -830,7 +830,7 @@ their version of the line
 </main>
 
 <footer>
-  Rowdy Creators · UTSA — built for brand-new members. Works offline; your progress is saved in this browser only.
+  Rowdy Creators · UTSA. Built for brand-new members. Works offline; your progress is saved in this browser only.
 </footer>
 
 <script>
