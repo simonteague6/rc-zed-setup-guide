@@ -453,8 +453,10 @@ does not provide shell access.</code></pre><button type="button" class="copy-btn
       <details class="fold">
         <summary><span class="ico">🔍</span> Curious? See the repo's history</summary>
         <div class="fold-body">
-          <p>This repo was built commit by commit, with two branches that split off and merged back. Zed can draw that shape for you.</p>
-          <p>Open the command palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows), type <code>git graph: open</code>, and press Enter. A panel shows the whole history as an interactive graph.</p>
+          <p>This repo was built commit by commit, with two branches that split off and merged back. Either of these shows you that shape, pick whichever you prefer:</p>
+          <p><strong>In Zed:</strong> open the command palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows), type <code>git graph: open</code>, and press Enter. You get an interactive graph in a panel.</p>
+          <p><strong>In the terminal:</strong> run this to draw the same graph as text:</p>
+          <div class="code-block"><pre><code>git log --oneline --graph --all</code></pre><button type="button" class="copy-btn">Copy</button></div>
           <p>You're about to add your own branch to that picture.</p>
         </div>
       </details>
